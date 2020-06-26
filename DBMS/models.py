@@ -30,7 +30,7 @@ class Sticker(models.Model):
 
 class Board(models.Model):
     nextStickerId = models.IntegerField()
-    stickers = models.EmbeddedField(Sticker)
+    stickers = models.ManyToManyField(Sticker)
 
     class Meta:
         abstract = True
@@ -51,7 +51,7 @@ class Event(models.Model):
 
 class Calender(models.Model):
     nextEventId = models.IntegerField()
-    events = models.ArrayField(Event)
+    events = models.ManyToManyField(Event)
 
     class Meta:
         abstract = True
@@ -84,15 +84,15 @@ class Project(models.Model):
     nthGroup = models.IntegerField()
     topic = models.CharField(max_length=MAX_NORMAL_STR)
     description = models.CharField(max_length=MAX_DESCRIPTION)
-    tag = models.ArrayField(models.CharField(MAX_NORMAL_STR))
+    tag = models.ManyToManyField(models.CharField(MAX_NORMAL_STR))
     grade = models.IntegerField()
     browse = models.IntegerField()
-    comment = models.ArrayField(Comment)
+    comment = models.ManyToManyField(Comment)
     board = models.EmbeddedField(Board)
     calender = models.EmbeddedField(Calender)
     teacher = models.CharField(max_length=MAX_USER_ID)
     leader = models.CharField(max_length=MAX_USER_ID)
-    members = models.ArrayField(models.CharField(max_length=MAX_USER_ID))
+    members = models.ManyToManyField(models.CharField(max_length=MAX_USER_ID))
     
     # Originally want tu use circular embbded document.
     # But python prevent this :(
@@ -130,8 +130,8 @@ class Profile(models.Model):
         ('ADMIN', 'admin')
     ]
 
-    group = models.ArrayField(Project)
-    collection = models.ArrayField(Project)
+    group = models.ManyToManyField(Project)
+    collection = models.ManyToManyField(Project)
     notification = models.EmbeddedField(Notification)
 
 # ================== End User Profile ====================
