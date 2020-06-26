@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'DBMS',
+    'EPIS',
+    'FS',
+    'GPMS',
+    'ICS',
+    'MS',
+    'UIS'
 ]
 
 MIDDLEWARE = [
@@ -105,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Taipei' #台北時區
+TIME_ZONE = 'Asia/Taipei'  # 台北時區
 
 USE_I18N = True
 
