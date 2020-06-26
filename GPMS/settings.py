@@ -82,9 +82,19 @@ WSGI_APPLICATION = 'GPMS.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+
+        # 這個 NAME 必須跟我們在 MongoDB
+        # 所創建的 database 名字一模一樣
+        'NAME': 'GPMS_db',
+
+        # HOST 的這串，到 Compass 去複製
+        'HOST': 'mongodb://127.0.0.1:27017/',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
 }
 
 
