@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from .userInformation import testAddProfile
 
-# Create your views here.
+def testAddUser(request):
+  testAddProfile()
+  return HttpResponse('Added user')
