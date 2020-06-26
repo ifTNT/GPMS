@@ -6,7 +6,11 @@ var logger = require('morgan');
 var stylus = require('stylus');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var uisRouter = require('./routes/UIS');
+var icsRouter = require('./routes/ICS');
+var episRouter = require('./routes/EPIS');
+var fsRouter = require('./routes/FS');
+var msRouter = require('./routes/MS');
 var db = require('./db');
 
 var app = express();
@@ -23,7 +27,11 @@ app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/uis', uisRouter);
+app.use('/ics', icsRouter);
+app.use('/epis', episRouter);
+app.use('/ms', msRouter);
+app.use('/fs', fsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

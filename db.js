@@ -8,13 +8,13 @@ const ProjectSchema = new Schema({});
 const ProfileSchema = new Schema({});
 
 const Exhibition = mongoose.model( 'Exhibition', ExhibitionSchema );
-const Profile = mongoose.model( 'Profile', Profile );
-const Project = mongoose.model( 'Project', Project );
+const Profile = mongoose.model( 'Profile', ProfileSchema );
+const Project = mongoose.model( 'Project', ProjectSchema );
 
-mongoose.connect( 'mongodb://localhost/GPMS_db' ).then(()=>{
-  console.log("Database connection successful");
+mongoose.connect('mongodb://localhost/GPMS_db', {useNewUrlParser: true, useUnifiedTopology: true} ).then(()=>{
+  console.log("Database connection successfully established");
 });
 
-export {
+module.exports = {
   Exhibition, Profile, Project
 }
