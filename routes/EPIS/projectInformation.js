@@ -47,10 +47,15 @@ function addProject(year = 0, nthGroup = 0) {
 // Return all of the exhibitions
 function getProjects(year = 0) {
   return new Promise((resolve, reject) => {
-    db.Project.find({ year: year }, (err, data) => {
-      if (err) reject(err);
-      resolve(data);
-    });
+    db.Project.find(
+      { year: year },
+      null,
+      { sort: { nthGroup: 1 } },
+      (err, data) => {
+        if (err) reject(err);
+        resolve(data);
+      }
+    );
   });
 }
 

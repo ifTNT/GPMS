@@ -26,7 +26,9 @@ function addExhibition(year) {
 // Return all of the exhibitions
 function getExhibitions() {
   return new Promise((resolve, reject) => {
-    db.Exhibition.find({}, (err, data) => {
+    db.Exhibition.find({}, null, 
+      { sort: { year: 1 } },
+      (err, data) => {
       if (err) reject(err);
       resolve(data);
     });
