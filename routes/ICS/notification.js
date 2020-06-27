@@ -3,37 +3,41 @@ var db = require('../../db.js');
 
 
 function getNotification(uid) {
-    var profile = db.Profile.where({
-        userId: uid
-    });
-    profile.findOne(function (err, profile) {
-        if (err){
-            conssole.log("flase") 
-            return flase;}
-        
-        if (profile) {
-            return (JSON.stringify(profile));
-        }
+    return new Promise((resolve, reject) => {
+        db.Profile.findOne({
+            userId: uid
+        }, function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
     });
 }
 
 function sendNotification(session, targetUserId, sourceUserId, content) {
     if (session.userId == sourceUserId) {
-        db.Profile.update({
-            userId: targetUserId
-        }, {
-            $push: {
-                date: Date.now(), // 通知日期, date
-                content, // 通知內容, string
-                read: false // 是否已讀，booleanF
-              }
-        }, {
-            upsert : false
-        }, function (err, docs) {
-            if (err) return err;
-            return true;
+        return new Promise((resolve, reject) => {
+            db.Profile.update({
+                userId: targetUserId
+            }, {
+                $push: {
+                    date: Date.now(), // 通知日期, date
+                    content, // 通知內容, string
+                    read: false // 是否已讀，booleanF
+                }
+            }, {
+                upsert: false
+            }, function (err, data) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(true);
+                }
+            });
         });
-    }else{
+    } else {
         return false
     }
 }

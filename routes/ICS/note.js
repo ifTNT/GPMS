@@ -2,32 +2,41 @@ var express = require('express');
 var db = require('../../db.js');
 
 
-
-
-
-
 function getNote(year, nthGroup) {
-    db.Project.findOne({
-        year: year,
-        nthGroup: nthGroup
-    }, 'note', function (err, text) {
-        if (err) return handleError(err);
-        return text.noteText
+    return new Promise((resolve, reject) => {
+        db.Project.findOne({
+            year: year,
+            nthGroup: nthGroup
+        }, 'note', function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data.noteText);
+            }
+        });
     });
 }
 
 function updateNote(year, nthGroup, text) {
-    db.Project.update({
-        year: year,
-        nthGroup: nthGroup
-    }, {
-        note: {noteText: text,changeTime: Date.now()}
-    }, {
-        upsert : false
-    }, function (err, docs) {
-        if (err) return err;
-        return true;
-    })
+    return new Promise((resolve, reject) => {
+        db.Project.findOneAndUpdate({
+            year: year,
+            nthGroup: nthGroup
+        }, {
+            note: {
+                noteText: text,
+                changeTime: Date.now()
+            }
+        }, {
+            upsert: false
+        }, function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(true);
+            }
+        });
+    });
 }
 
 

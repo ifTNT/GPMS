@@ -2,45 +2,51 @@ var express = require('express');
 var db = require('../../db.js');
 
 
-
-
-
-getCalender(year = 0, nthGroup = 0)
+function getCalender(year = 0, nthGroup = 0) {
+    return new Promise((resolve, reject) => {
+        db.Project.findOne({
+            year: year,
+            nthGroup: nthGroup
+        }, 'calender', function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data.events);
+            }
+        });
+    });
+}
 
 function setCalender(year, nthGroup, eventId, date, content) {
-    if (eventId == "") {
-        db.Project.findOne({
-            year: year,
-            nthGroup: nthGroup
-        }, 'calender', function (err, calender) {
-            if (err) return handleError(err);
+    return new Promise((resolve, reject) => {
 
-            var nextId = calender.nextEventId;
-            calender.events.push({
-                evnetId: nextId, // 事件ID, integer
-                date: date, // 事件日期, date 
+        var projectFind = await db.Project.findOne({
+            year: year,
+            nthGroup: nthGroup,
+        })
+        var nextId = eventId;
+        if (eventId == "") {
+            nextId = calenderFind.calender.nextEventId;
+            calenderFind.calender.nextEventId = calenderFind.calender.nextEventId + 1;
+            projectFind.calender.events.push({
+                eventId: nextId,
+                date: date,
                 content: content
+            });
+        }else{
+            projectFind.calender.events.forEach(eve=>{
+                if(eve.eventId == eventId){
+                    eve.date= date,
+                    eve.content= content
+                }
             })
-            nextId += 1;
-            calender.save();
-        });
-    } else {
-        db.Project.findOne({
-            year: year,
-            nthGroup: nthGroup
-        }, 'calender', function (err, calender) {
-            if (err) return handleError(err);
-            var find = calender.events;
-            find.findOne({evnetId: eventId},function(err,findEvent){
-                if (err) return handleError(err);
+        }
 
-                findEvent.date= date;
-                findEvent.content= content;
-                // findEvent.save();
-            })
-            calender.save();
+        await projectFind.save(function (err) {
+            if (err) reject(err)
+            else resolve(true)
         });
-    }
+    });
 }
 
 module.exports = {
