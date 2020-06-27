@@ -2,6 +2,7 @@ var express = require("express");
 var exhibitionInformation = require("./exhibitionInformation");
 var projectInformation = require("./projectInformation");
 var projectRanking = require("./projectRanking");
+var projectQuery = require("./projectQuery");
 var router = express.Router();
 
 // Add an exhibition
@@ -148,6 +149,34 @@ router.get("/proj/:year/:nthGroup/toggle_collect", function (req, res, next) {
     let nthGroup = parseInt(req.params.nthGroup);
     projectInformation
       .toggleCollect(req, year, nthGroup)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => next(err));
+  }
+});
+
+// Query a name
+router.get("/query/name/:name", function (req, res, next) {
+  if (req.params.name === undefined) {
+    next({ message: "Invalid argument" });
+  } else {
+    projectQuery
+      .queryNmae(req.params.name)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => next(err));
+  }
+});
+
+// Query a tag
+router.get("/query/tag/:tag", function (req, res, next) {
+  if (req.params.tag === undefined) {
+    next({ message: "Invalid argument" });
+  } else {
+    projectQuery
+      .queryTag(req.params.tag)
       .then((data) => {
         res.json(data);
       })
