@@ -8,7 +8,7 @@ var db = require('../../db.js');
 
 function getNote(year, nthGroup) {
     db.Project.findOne({
-        userId: year,
+        year: year,
         nthGroup: nthGroup
     }, 'note', function (err, text) {
         if (err) return handleError(err);
@@ -18,7 +18,7 @@ function getNote(year, nthGroup) {
 
 function updateNote(year, nthGroup, text) {
     db.Project.update({
-        userId: year,
+        year: year,
         nthGroup: nthGroup
     }, {
         note: {noteText: text,changeTime: Date.now()}

@@ -7,7 +7,10 @@ function getNotification(uid) {
         userId: uid
     });
     profile.findOne(function (err, profile) {
-        if (err) return handleError(err);
+        if (err){
+            conssole.log("flase") 
+            return flase;}
+        
         if (profile) {
             return (JSON.stringify(profile));
         }
