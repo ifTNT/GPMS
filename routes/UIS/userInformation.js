@@ -1,5 +1,5 @@
 const db = require("../../db");
-var sha1sum = require("crypto").createHash("sha1");
+var crypto = require("crypto");
 const dateFormat = require("dateformat");
 
 // Generating user for testing
@@ -7,6 +7,7 @@ const dateFormat = require("dateformat");
 function addTestUser() {
   let userId = dateFormat(new Date(), "mmddHHMM");
   // Generate Password
+  let sha1sum = crypto.createHash("sha1");
   sha1sum.update("12345");
   let password = sha1sum.digest("hex");
 
@@ -39,10 +40,6 @@ function getProfile(userId = "") {
       if (err) {
         reject(err);
       } else {
-        // If not exist, return empty object
-        if (data === null) {
-          data = {};
-        }
         resolve(data);
       }
     });
@@ -59,10 +56,6 @@ function setProfile(userId = "", newContent) {
         if (err) {
           reject(err);
         } else {
-          // If not exist, return empty object
-          if (data === null) {
-            data = {};
-          }
           resolve(data);
         }
       }

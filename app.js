@@ -2,6 +2,7 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
+var bodyParser = require("body-parser");
 var logger = require("morgan");
 var stylus = require("stylus");
 var session = require("express-session");
@@ -23,19 +24,44 @@ app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   session({
     secret: "afwfdpfkpaokwefn-9gj0irntjolwaefmiowekeafek",
     store: new MongoStore({ url: "mongodb://localhost/GPMS_db" }),
-    cookie: { maxAge: 60 * 1000 },
+    cookie: { maxAge: 5 * 60 * 1000 },
     resave: false,
     saveUninitialized: true,
   })
 );
 app.use(stylus.middleware(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "public")));
+
+// Set up default session
+app.use(function (req, res, next) {
+  function setIfUndefined(obj, default_val) {
+    return obj === undefined ? default_val : obj;
+  }
+  req.session.logined = setIfUndefined(req.session.logined, false);
+  req.session.userId = setIfUndefined(req.session.userId, "");
+  req.session.roll = setIfUndefined(req.session.roll, "guest");
+  // Calculate year
+  let date = new Date();
+  req.session.year = setIfUndefined(
+    req.session.year,
+    (date.getMonth() >= 8 ? date.getFullYear() : date.getFullYear() - 1) - 1911
+  );
+  req.session.freezed = setIfUndefined(req.session.freezed, false);
+  req.session.save(() => {
+    next();
+  });
+});
+
+app.get("/print_session", function (req, res) {
+  res.send(JSON.stringify(req.session, null, 2));
+});
 
 app.use("/", indexRouter);
 app.use("/uis", uisRouter);
