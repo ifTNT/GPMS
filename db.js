@@ -53,7 +53,11 @@ const ProjectSchema = new mongoose.Schema({
   },
   teacher: String,
   leader: String,
-  members: [String]
+  members: [String],
+  note: {
+    noteText: String,
+    changeTime: Date
+  }
 });
 
 const notificationSchema = new mongoose.Schema({
@@ -72,7 +76,7 @@ const ProfileSchema = new mongoose.Schema({
   lab: String, // 實驗室名稱, 老師專屬欄位, 如果是學生則為空字串, string
   roll: {
     type: String,
-    enum: ['guest','member','leader','teacher','admin'],
+    enum: ['guest', 'member', 'leader', 'teacher', 'admin'],
     default: 'guest'
   }, // 使用者的角色, enum Roll
   groups: [ProjectSchema],
@@ -86,15 +90,21 @@ const VoteSchema = new mongoose.Schema({
   userId: String
 });
 
-const Exhibition = mongoose.model( 'Exhibition', ExhibitionSchema );
-const Profile = mongoose.model( 'Profile', ProfileSchema );
-const Project = mongoose.model( 'Project', ProjectSchema );
-const Vote = mongoose.model( 'Vote', VoteSchema );
+const Exhibition = mongoose.model('Exhibition', ExhibitionSchema);
+const Profile = mongoose.model('Profile', ProfileSchema);
+const Project = mongoose.model('Project', ProjectSchema);
+const Vote = mongoose.model('Vote', VoteSchema);
 
-mongoose.connect('mongodb://localhost/GPMS_db', {useNewUrlParser: true, useUnifiedTopology: true} ).then(()=>{
+mongoose.connect('mongodb://localhost/GPMS_db', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
   console.log("Database connection successfully established");
 });
 
 module.exports = {
-  Exhibition, Profile, Project, Vote
+  Exhibition,
+  Profile,
+  Project,
+  Vote
 }
