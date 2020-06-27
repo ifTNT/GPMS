@@ -5,24 +5,57 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/login.css" />
   </head>
   <body>
-    <form>
-      <table class="table">
-        <tr>
-          <td>帳號(學號)：</td>
-          <td><input type="text" name="account" /></td>
-        </tr>
-        <tr>
-          <td>密碼：</td>
-          <td><input type="password" name="pwd" /></td>
-        </tr>
+    <table class="table">
+      <tr>
+        <td>帳號(學號)：</td>
+        <td><input type="text" name="account" /></td>
+      </tr>
+      <tr>
+        <td>密碼：</td>
+        <td><input type="password" name="pwd" /></td>
+      </tr>
 
-        <tr>
-          <td colspan="3" style="text-align: center;">
-            <input type="hidden" name="action" value="login" />
-            <input type="submit" value="登入" />
-          </td>
-        </tr>
-      </table>
-    </form>
+      <tr>
+        <td colspan="3" style="text-align: center;">
+          <input type="hidden" name="action" value="login" />
+          <input id="submit" type="submit" value="登入" />
+        </td>
+      </tr>
+    </table>
+    <span class="result"></span>
   </body>
+  <script>
+    function submit(e) {
+      e.preventDefault();
+      var url = "/uis/login";
+      var data = {
+        userId: document.querySelector("input[name='account']").value,
+        password: document.querySelector("input[name='pwd']").value,
+      };
+
+      console.log(data);
+
+      fetch(url, {
+        method: "POST", // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+      })
+        .then((res) => res.json())
+        .catch((error) => console.error("Error:", error))
+        .then((res) => {
+          if (res["ok"] === true) {
+            console.log("Login success");
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 500);
+            document.querySelector(".result").innerHTML = "登入成功";
+          } else {
+            document.querySelector(".result").innerHTML = res.message;
+          }
+        });
+    }
+    document.querySelector("#submit").addEventListener("click", submit);
+  </script>
 </html>

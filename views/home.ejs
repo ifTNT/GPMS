@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/home.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css" />
   </head>
   <body>
     <header>
@@ -15,42 +16,51 @@
           <div class="item_icon">
               <% if(session.roll==='guest'){ %>
             <a href="javascript:login()">
-              <img src="/images/login.png" />
             </a>
             <% }else if(session.roll==='admin'){ %>
             <select
-              onchange="window.open(this.options[this.selectedIndex].value)"
+              onchange="window.location.href=this.options[this.selectedIndex].value"
             >
               <option value="/edit_group_info">組別資訊</option>
               <option value="/notice">通知</option>
               <option value="/exhi_info">展覽資訊</option>
               <option value="/statistic">統計分析</option>
               <option value="/account_manage">帳號管理</option>
-              <option value="/home">登出</option>
+              <option value="/uis/logout" selected>登出</option>
             </select>
             <% }else if(session.roll==='teacher'){ %>
-            <select>
-                            <option value="user_information.html">個人資訊</option>
-                            <option value="grade.html">指導組別</option>
-                            <option value="group_edit.html">組別資訊</option>
-                            <option value="like.html">收藏</option>
-                            <option value="note.html">記事本</option>
-                            <option value="board.html">佈告欄</option>
-                            <option value="calendar.html">行事曆</option>
-                            <option>登出</option>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+            >
+                            <option value="/user_information">個人資訊</option>
+                            <option value="/grade">指導組別</option>
+                            <option value="/group_edit">組別資訊</option>
+                            <option value="/like">收藏</option>
+                            <option value="/note">記事本</option>
+                            <option value="/board">佈告欄</option>
+                            <option value="/calendar">行事曆</option>
+                            <option value="/uis/logout" selected>登出</option>
                         </select>
             <% }else{ %>
-            <select>
-                            <option value="user_information.html">個人資訊</option>
-                            <option value="group_edit.html">組別資訊</option>
-                            <option value="like.html">收藏</option>
-                            <option value="note.html">記事本</option>
-                            <option value="board.html">佈告欄</option>
-                            <option value="calendar.html">行事曆</option>
-                            <option>登出</option>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+            >
+                            <option value="/user_information">個人資訊</option>
+                            <option value="/group_edit">組別資訊</option>
+                            <option value="/like">收藏</option>
+                            <option value="/note">記事本</option>
+                            <option value="/board">佈告欄</option>
+                            <option value="/calendar">行事曆</option>
+                            <option value="/uis/logout" selected>登出</option>
                         </select>
             <% } %>
           </div>
+            <% if(session.roll==='guest'){ %>
+                <p>訪客</p>
+            <% }else{ %>
+                <p><%=session.userId%></p>
+            <% } %>
+            %>
         </div>
       </nav>
     </header>
@@ -87,7 +97,7 @@
     </div>
 
     <div class="info_block">
-        <h2>展覽資訊</h2>
+        <h2>資工系<%= session.year%>學年度畢業專題展覽資訊</h2>
         地點：<span><%= currentExhibition.location %></span><br/>
         時間：<span><%= dateFormat(currentExhibition.date, "yyyy-mm-dd")%></span>&nbsp;&nbsp;&nbsp;&nbsp;9:00~17:00<br/>
       <!--<img src="/images/info.png" />-->
@@ -95,7 +105,7 @@
     <div class="content">
       <% projects.forEach(proj=>{ %>
       <div class="boxes">
-        <a href=<%="/open_information?nthGroup="+proj.nthGroup%>>
+        <a href=<%= `/project/${session.year}/${proj.nthGroup}`%>>
           <div class="box">
             <img src="/images/1_group.png" />
             <h1>第<%= proj.nthGroup %>組: <%= proj.topic %></h1>

@@ -52,6 +52,7 @@ router.get("/project/:year/:nthGroup", function (req, res, next) {
           members: data.members,
           description: data.description,
           chat: data.comment,
+          session: req.session
         });
         res.json(data);
       })

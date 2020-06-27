@@ -67,17 +67,17 @@
 				margin-top: -95px;
 			}
 			nav{
-				display: flex;
+  			display: flex;
+  			align-items: center;
+  			justify-content: center;
 			}
 			.item{
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				margin-top: 70px;
 			}
 			.item img{
 				width: 40px;
-				height: 40px;
 				margin-right: 10px;
 				margin-top: -15px;
 			}
@@ -85,14 +85,12 @@
 				position: relative;
 				display: inline-block;
 				width: 90px;
-				height: 25px;
 				color: rgb(0, 0, 0);
 			}
 			.item_icon a {
 				position: absolute;
 				display: block;
 				width: 90px;
-				height: 25px;
 				line-height: 25px;
 				text-indent: 10px;
 			}
@@ -102,7 +100,6 @@
 				top: 0;
 				left: 0;
 				width: 90px;
-				height: 25px;
 				opacity: 0;
 			}
 			.item_icon select option {
@@ -206,22 +203,27 @@
 	</head>
 	<body style="overflow-x: hidden;">
 		<header>
-            <div class="logo"> <a href="/"><img src="/images/title.png"></a> </div>
-                <div class="item">
-                    <div class="item_icon">
-                        <a href="javascript:login()">
-                            <img src="/images/login.png">
-                        </a>
-                        <select onchange="window.open(this.options[this.selectedIndex].value)">
-                            <option value="edit_group_info.html">組別資訊</option>
-                            <option value="notice.html">通知</option>
-                            <option value="exhi_info.html">展覽資訊</option>
-                            <option value="statistic.html">統計分析</option>
-                            <option value="account_manage.html">帳號管理</option>
-                            <option value="home.html">登出</option>
-                        </select>
-                        
-                        <!--老師<select>
+						<div class="logo"> <a href="/"><img src="/images/title.png"></a> </div>
+						<nav>
+        <div class="item">
+          <div class="item_icon">
+              <% if(session.roll==='guest'){ %>
+            <a href="javascript:login()">
+              <img src="/images/login.png" />
+            </a>
+            <% }else if(session.roll==='admin'){ %>
+            <select
+              onchange="window.open(this.options[this.selectedIndex].value)"
+            >
+              <option value="/edit_group_info">組別資訊</option>
+              <option value="/notice">通知</option>
+              <option value="/exhi_info">展覽資訊</option>
+              <option value="/statistic">統計分析</option>
+              <option value="/account_manage">帳號管理</option>
+              <option value="/home">登出</option>
+            </select>
+            <% }else if(session.roll==='teacher'){ %>
+            <select>
                             <option value="user_information.html">個人資訊</option>
                             <option value="grade.html">指導組別</option>
                             <option value="group_edit.html">組別資訊</option>
@@ -230,8 +232,9 @@
                             <option value="board.html">佈告欄</option>
                             <option value="calendar.html">行事曆</option>
                             <option>登出</option>
-                        </select>-->
-                        <!--組長組員<select>
+                        </select>
+            <% }else{ %>
+            <select>
                             <option value="user_information.html">個人資訊</option>
                             <option value="group_edit.html">組別資訊</option>
                             <option value="like.html">收藏</option>
@@ -239,9 +242,10 @@
                             <option value="board.html">佈告欄</option>
                             <option value="calendar.html">行事曆</option>
                             <option>登出</option>
-                        </select>-->
-                    </div>
-                </div>
+                        </select>
+            <% } %>
+								</div>
+								</div>
             </nav>
         </header>
 		<div class="content">
