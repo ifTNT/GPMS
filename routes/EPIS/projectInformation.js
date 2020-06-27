@@ -65,7 +65,7 @@ function getProject(year = 0, nthGroup = 0) {
 }
 
 // Update specified year exhibition
-function setPorject(year = 0, nthGroup = 0, newContent = {}) {
+function setPorject(req, year = 0, nthGroup = 0, newContent = {}) {
   return new Promise((resolve, reject) => {
     db.Project.findOneAndUpdate(
       { year: year, nthGroup: nthGroup },
@@ -106,55 +106,49 @@ function isCollected(req, year = 0, nthGroup = 0) {
 }
 
 function toggleCollect(req, year = 0, nthGroup = 0) {
-  return new Promise((resolve, reject) => {
-    isCollected(req, year, nthGroup)
-      .then((collected) => {
-        if (collected) {
-          // Remove project from collection
-          db.Profile.findOneAndUpdate(
-            { userId: req.session.userId },
-            {
-              $pull: {
-                collections: {
-                  year: year,
-                  nthGroup: nthGroup,
-                },
-              },
+  return new Promise(async (resolve, reject) => {
+    let collected = await isCollected(req, year, nthGroup).catch((err) => {
+      resolve(err);
+    });
+    if (collected) {
+      // Remove project from collection
+      db.Profile.findOneAndUpdate(
+        { userId: req.session.userId },
+        {
+          $pull: {
+            collections: {
+              year: year,
+              nthGroup: nthGroup,
             },
-            { omitUndefined: true, new: true },
-            function (err, data) {
-              if (err) {
-                reject(err);
-              } else {
-                resolve(!collected);
-              }
-            }
-          );
-        } else {
-          // Push new project to collection
-          getProject(year, nthGroup)
-            .then((newCollection) => {
-              db.Profile.findOneAndUpdate(
-                { userId: req.session.userId },
-                { $push: { collections: newCollection } },
-                { omitUndefined: true, new: true },
-                function (err, data) {
-                  if (err) {
-                    reject(err);
-                  } else {
-                    resolve(!collected);
-                  }
-                }
-              );
-            })
-            .catch((err) => {
-              reject(err);
-            });
+          },
+        },
+        { omitUndefined: true, new: true },
+        function (err, data) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(!collected);
+          }
         }
-      })
-      .catch((err) => {
+      );
+    } else {
+      // Push new project to collection
+      let newCollection = await getProject(year, nthGroup).catch((err) => {
         reject(err);
       });
+      db.Profile.findOneAndUpdate(
+        { userId: req.session.userId },
+        { $push: { collections: newCollection } },
+        { omitUndefined: true, new: true },
+        function (err, data) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(!collected);
+          }
+        }
+      );
+    }
   });
 }
 
