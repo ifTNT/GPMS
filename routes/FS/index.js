@@ -1,5 +1,6 @@
 var express = require('express');
 var vote = require('./vote');
+var comment = require('./comment');
 var router = express.Router();
 
 /* GET users listing. */
@@ -38,6 +39,26 @@ router.get('/vote/toggleVote', function (req, res, next) {
     })
 });
 
+// ===================== Comment =====================
 
+router.get('/comment/getComments', function (req, res, next) {
+  comment
+    .getComments(req.query.year, req.query.nthGroup)
+    .then((data) => {
+      res.send(JSON.stringify(data));
+    }).catch((err) => {
+      next(err);
+    })
+});
+
+router.post('/comment/addComment', function (req, res, next) {
+  comment
+    .addComment(req.body.year, req.body.nthGroup, req.body.content, req.body.userId)
+    .then((data) => {
+      res.send(data);
+    }).catch((err) => {
+      next(err);
+    })
+});
 
 module.exports = router;

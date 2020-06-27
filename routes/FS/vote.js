@@ -20,7 +20,6 @@ function canVote(year, userId) {
             }
         });
     });
-
 }
 
 function isVoted(year, nthGroup, userId) {
