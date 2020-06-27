@@ -61,15 +61,28 @@
     </head>
     <body>
         <header>
-            <div class="web_title"><a href="home.html"><img src="title.png"></a></div>
+            <div class="web_title"><a href="/home"><img src="/images/title.png"></a></div>
 			<nav>
                 <div class="item">
-                    <div class="item__icon"><img src="login.png"></div>
+                    <div class="item__icon"><img src="/images/login.png"></div>
                 </div>
             </nav>
         </header>
         <div class="boardPage">
-            <table width="300px">
+            <% for(var i=0; i<stickers.length; i++) { %>
+                <table width="300px">
+                    <tr>
+                        <td height="50px">日期:<%= stickers[i].date %></td>
+                    </tr>
+                    <tr>
+                        <td height="50px">發布者:<%= stickers[i].name %></td>
+                    </tr>
+                    <tr>
+                        <td height="120px">事項:<%= stickers[i].content %></td>
+                    </tr>
+                </table>
+            <% } %>
+            <!-- <table width="300px">
                 <tr>
                     <td height="50px">日期:</td>
                 </tr>
@@ -112,9 +125,9 @@
                 <tr>
                     <td height="120px">事項:</td>
                 </tr>
-            </table>
+            </table> -->
             <div class="newBoard" style="width:300px; height: 223px">
-                <a href="edit_board.html"><img src="add.png" style="width:65px; height:65px"></a>
+                <a href="/edit_board"><img src="/images/add.png" style="width:65px; height:65px"></a>
             </div>
         </div>
     </body>

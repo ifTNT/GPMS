@@ -45,6 +45,7 @@ const ProjectSchema = new mongoose.Schema({
   description: String,
   tag: [String],
   grade: [gradeSchema],
+  img: String,
   browse: Number,
   comment: [commentsSchema],
   board: {

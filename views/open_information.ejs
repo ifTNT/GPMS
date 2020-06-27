@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<!-- <link rel="stylesheet" href="/stylesheets/reset.css"> -->
 		<style>
 			
 			html, body, div, span, applet, object, iframe,
@@ -122,7 +123,7 @@
 				margin-top: -95px;
 			}
 			font {
-				size=10px;
+				size:10px;
 			}
 			.poster {
 				height: 600px;
@@ -155,7 +156,7 @@
 			}
 			.click_button {
 				margin-top:100px;
-				width: 30%
+				width: 30%;
 				display: flex;
 				flex-direction:column;
 				justify-content:center;
@@ -203,14 +204,14 @@
 		</style>
 		<title></title>
 	</head>
-	<body>
+	<body style="overflow-x: hidden;">
 		<header>
-            <div class="logo"> <a href="home.html"><img src="title.png"></a> </div>
+            <div class="logo"> <a href="/home"><img src="/images/title.png"></a> </div>
             <nav>
                 <div class="item">
                     <div class="item_icon">
                         <a href="javascript:login()">
-                            <img src="login.png">
+                            <img src="/images/login.png">
                         </a>
                         <select onchange="window.open(this.options[this.selectedIndex].value)">
                             <option value="edit_group_info.html">組別資訊</option>
@@ -248,55 +249,57 @@
 			<div class="information">
 				<div class="left_part">
 					<div class="poster">
-						<img src="" width="">
+						<img src=`<%= imgsrc %>` width="">
 					</div>
 				</div>
 				<div class="right_part">
 					<div class="group_information">
 						<div class="group_name">
-							<font>第一組:無人機</font>
+							<font><%= title %></font>
 						</div>
 						<div class="group_teacher">
-							<font>指導老師:user1</font>
+							<font>指導老師:<%= teacherName %></font>
 						</div>
 						<div class="group_leader">
-							<font>組長:user2</font>
+							<font>組長:<%= leaderName %></font>
 						</div>
+						<% for(var i=0; i<members.length; i++) { %>
 						<div class="group_member">
-							<font>成員:user3</font>
+							<font>成員:<%= members[i] %></font>
 						</div>
+						<% } %>
 					</div>
 					<div class="introduct">
-						<font>簡介:an apple a day keep a doctor away</font>
+						<font>簡介:<%= description %></font>
 					</div>
 				</div>
 			</div>
 			<div class="click_button">
 				<div class="unlike">
 					<button id="unlike" type="button" onclick="clickunlike()">
-						<img src="unlike.png">
+						<img src="/images/unlike.png">
 					</button>
 				</div>
 				<div class="like">
 					<button id="like" type="button" onclick="clicklike()">
-						<img src="like.png">
+						<img src="/images/like.png">
 					</button>
 				</div>
 				<div class="vote">
 					<button id="vote" type="button" onclick="clickvote()">
-						<img src="vote.png">
+						<img src="/images/vote.png">
 					</button>
 				</div>
 				<div class="unvote">
 					<button id="unvote" type="button" onclick="clickunvote()">
-						<img src="unvote.png">
+						<img src="/images/unvote.png">
 					</button>
 				</div>
 				<div class="teacher_button">
-					<input  type="button" onclick="javascript:location.href='note.html'" value="記事本"></input>
-					<input  type="button" onclick="javascript:location.href='calendar.html'" value="行事曆"></input>
-					<input  type="button" onclick="javascript:location.href='board.html'" value="公告欄"></input>
-					<input  type="button" onclick="javascript:location.href='group_information.html'" value="組別資訊"></input>
+					<input  type="button" onclick="javascript:location.href='/note'" value="記事本"></input>
+					<input  type="button" onclick="javascript:location.href='/calendar'" value="行事曆"></input>
+					<input  type="button" onclick="javascript:location.href='/board'" value="公告欄"></input>
+					<input  type="button" onclick="javascript:location.href='/group_information'" value="組別資訊"></input>
 				</div>
 			</div>
 		</div>
@@ -305,8 +308,13 @@
 				<textarea rows="1" name="message_content" cols="50"></textarea>
 				<button type="button">送出</button>
 			</div>
+			<ul>
+				<% for(var i=0; i<chat.length; i++) { %>
+				<li><%= chat[i].name %>: <%= chat[i].content %></li>
+				<% } %>
+			</ul>
 		</div>
-		<script src="open_information.js">
+		<script src="/javascripts/open_information.js">
 			
 		</script>
 	</body>
