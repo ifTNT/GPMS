@@ -20,7 +20,7 @@ function getCalender(year = 0, nthGroup = 0) {
 function setCalender(year, nthGroup, eventId, date, content) {
     return new Promise((resolve, reject) => {
 
-        var projectFind = await db.Project.findOne({
+        var projectFind = db.Project.findOne({
             year: year,
             nthGroup: nthGroup,
         })
@@ -42,7 +42,7 @@ function setCalender(year, nthGroup, eventId, date, content) {
             })
         }
 
-        await projectFind.save(function (err) {
+        projectFind.save(function (err) {
             if (err) reject(err)
             else resolve(true)
         });

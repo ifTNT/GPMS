@@ -1,6 +1,7 @@
 var express = require("express");
 var exhibitionInformation = require("./exhibitionInformation");
 var projectInformation = require("./projectInformation");
+var projectRanking = require("./projectRanking");
 var router = express.Router();
 
 // Add an exhibition
@@ -84,6 +85,21 @@ router.get("/projs/:year", function (req, res, next) {
     let year = parseInt(req.params.year);
     projectInformation
       .getProjects(year)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => next(err));
+  }
+});
+
+// Get ranking of the project of one year
+router.get("/projs/:year/rank", function (req, res, next) {
+  if (req.params.year === undefined) {
+    next({ message: "Invalid argument" });
+  } else {
+    let year = parseInt(req.params.year);
+    projectRanking
+      .getProjectRanking(year)
       .then((data) => {
         res.json(data);
       })
