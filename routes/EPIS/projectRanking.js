@@ -37,4 +37,5 @@ function getProjectRanking(year = 0) {
 
 module.exports = {
   getProjectRanking,
+  getProjectBallot
 };
