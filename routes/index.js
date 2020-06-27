@@ -84,9 +84,42 @@ router.get("/user_information", async function (req, res, next) {
   if(req.session.logined===false){
     res.redirect("/");
   }else{
-    let profile = await userInformation.getProfile(req.session.userId)
-    res.render("user_information", { session: req.session, profile});
+    let profile;
+    if(req.query.user===undefined){
+      profile = await userInformation.getProfile(req.session.userId)
+    }else{
+      profile = await userInformation.getProfile(req.query.user)
+    }
+    if(profile===null){
+      res.send("User not fount");
+    }else{
+      res.render("user_information", { session: req.session, profile});
+    }
   }
 });
+
+router.get("/group_edit", async function (req, res, next) {
+  if(req.session.logined===false){
+    res.redirect("/");
+  }else{
+    let profile = await userInformation.getProfile(req.session.userId)
+    let primaryProject = profile.groups[0];
+    let project = await projectInformation.getProject(primaryProject.year, primaryProject.nthGroup);
+    res.render("group_edit", { session: req.session, project});
+  }
+});
+
+router.get("/group_information", async function (req, res, next) {
+  if(req.session.logined===false){
+    res.redirect("/");
+  }else{
+    let profile = await userInformation.getProfile(req.session.userId)
+    let primaryProject = profile.groups[0];
+    let project = await projectInformation.getProject(primaryProject.year, primaryProject.nthGroup);
+    res.render("group_information", { session: req.session, project});
+  }
+});
+
+
 
 module.exports = router;

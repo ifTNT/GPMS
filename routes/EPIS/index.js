@@ -124,6 +124,21 @@ router.get("/proj/:year/:nthGroup", function (req, res, next) {
   }
 });
 
+router.post("/proj/:year/:nthGroup", function (req, res, next) {
+  if (req.params.year === undefined || req.params.nthGroup === undefined) {
+    next({ message: "Invalid argument" });
+  } else {
+    let year = parseInt(req.params.year);
+    let nthGroup = parseInt(req.params.nthGroup);
+    projectInformation
+      .setPorject(req, year, nthGroup, req.body)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => next(err));
+  }
+});
+
 // Get whether a group is collected
 router.get("/proj/:year/:nthGroup/is_collected", function (req, res, next) {
   if (req.params.year === undefined || req.params.nthGroup === undefined) {
