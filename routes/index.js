@@ -1,9 +1,9 @@
 var express = require("express");
 var projectInformation = require("./EPIS/projectInformation");
 var exhibitionInformation = require("./EPIS/exhibitionInformation");
+var userInformation = require("./UIS/userInformation");
 const dateFormat = require("dateformat");
 var router = express.Router();
-var projectInformation = require("./EPIS/projectInformation");
 var board = require('./ICS/board');
 
 
@@ -80,5 +80,13 @@ router.get('/board/:year/:nthGroup', function (req, res, next) {
     });
 });
 
+router.get("/user_information", async function (req, res, next) {
+  if(req.session.logined===false){
+    res.redirect("/");
+  }else{
+    let profile = await userInformation.getProfile(req.session.userId)
+    res.render("user_information", { session: req.session, profile});
+  }
+});
 
 module.exports = router;
