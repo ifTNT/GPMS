@@ -33,6 +33,10 @@ const eventsSchema = new mongoose.Schema({ // used in ProjectSchema
   date: Date, // 事件日期, date 
   content: String // 事件內容, string
 });
+// const gradeSchema = new mongoose.Schema({ 
+//   teacherId: String,
+//   grade: Number
+// });
 
 const ProjectSchema = new mongoose.Schema({
   year: Number,
@@ -40,7 +44,7 @@ const ProjectSchema = new mongoose.Schema({
   topic: String,
   description: String,
   tag: [String],
-  grade: Number,
+  grade: [{teacherId: String, grade: Number}],
   browse: Number,
   comment: [commentsSchema],
   board: {
