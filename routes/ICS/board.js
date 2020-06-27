@@ -1,46 +1,44 @@
 var express = require('express');
 var db = require('../../db.js');
 
-
-function getCalender(year = 0, nthGroup = 0) {
+function getBoard(year = 0, nthGroup = 0) {
     return new Promise((resolve, reject) => {
         db.Project.findOne({
             year: year,
             nthGroup: nthGroup
-        }, 'calender', function (err, data) {
+        }, 'board', function (err, data) {
             if (err) {
                 reject(err);
             } else {
-                resolve(data.calender);
+                resolve(data.stickers);
             }
         });
     });
 }
 
-function setCalender(year, nthGroup, eventId, date, content) {
+function updateSticker(year, nthGroup, stickerId, userId, content) {
     return new Promise((resolve, reject) => {
         db.Project.findOne({
             year: year,
             nthGroup: nthGroup,
-        }, 'calender', function (err, data) {
+        }, function (err, data) {
             if (err) {
                 reject(err);
             } else {
-                var nextId = eventId;
-                console.log(data.calender.nextEventId)
                 if (eventId == "") {
-                    nextId = data.calender.nextEventId;
-                    data.calender.nextEventId = data.calender.nextEventId + 1;
-                    data.calender.events.push({
-                        eventId: nextId,
-                        date: date,
+                    data.board.stickers.push({
+                        stickerId: data.board.nextStickerId,
+                        date: Date.now(), // 公告的日期, date
+                        name: userId, // 公告的發布者, string
                         content: content
                     });
+                    data.board.nextEventId = data.board.nextEventId + 1;
                 } else {
-                    data.calender.events.forEach(eve => {
-                        if (eve.eventId == eventId) {
-                            eve.date = date;
-                            eve.content = content;
+                    data.board.stickers.forEach(eve => {
+                        if (eve.stickerId == stickerId) {
+                            date= Date.now() // 公告的日期, date
+                            name= userId // 公告的發布者, string
+                            content= content
                         }
                     })
                 }
@@ -53,7 +51,10 @@ function setCalender(year, nthGroup, eventId, date, content) {
     });
 }
 
+
+
 module.exports = {
-    getCalender,
-    setCalender,
+    getBoard,
+    newSticker,
+    updateSticker
 };
