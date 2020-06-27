@@ -3,7 +3,7 @@ const userInformation = require("./userInformation");
 var crypto = require("crypto");
 const dateFormat = require("dateformat");
 
-function login(userId, password) {
+function login(req, userId, password) {
   return new Promise((resolve, reject) => {
     if (userId == undefined || password == undefined) {
       reject({ message: "Incompleted argument" });
@@ -23,8 +23,13 @@ function login(userId, password) {
         let hashPassword = sha1sum.digest("hex");
         if (data.userPassword === hashPassword) {
           // Setup session
-          data.messasge = "Login successfully";
-          resolve(data);
+          req.session.logined = true;
+          req.session.userId = data.userId;
+          req.session.roll = data.roll;
+          req.session.save(() => {
+            data.messasge = "Login successfully";
+           resolve(data);
+          });
         } else {
           reject({ message: "Password mismatch" });
         }
@@ -35,6 +40,17 @@ function login(userId, password) {
   });
 }
 
+function logout(req){
+  return new Promise((resolve, reject)=>{
+  delete req.session.logined;
+  delete req.session.userId;
+  delete req.session.roll;
+  req.session.save(() => {
+    resolve()
+  });
+  });
+}
+
 module.exports = {
-  login,
+  login, logout
 };

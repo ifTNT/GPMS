@@ -44,15 +44,9 @@ router.post("/login", function (req, res, next) {
     res.send("{'msg':'Invalid Arguments'}");
   } else {
     login
-      .login(req.body.userId, req.body.password)
-      .then((data) => {
-        // Setup session
-        req.session.logined = true;
-        req.session.userId = data.userId;
-        req.session.roll = data.roll;
-        req.session.save(() => {
-          res.json({ msg: "Login successful" });
-        });
+      .login(req, req.body.userId, req.body.password)
+      .then(() => {
+        res.json({ msg: "Login successful" });
       })
       .catch((err) => {
         res.json(err);
@@ -61,10 +55,7 @@ router.post("/login", function (req, res, next) {
 });
 
 router.get("/logout", function (req, res, netx) {
-  delete req.session.logined;
-  delete req.session.userId;
-  delete req.session.roll;
-  req.session.save(() => {
+  login.logout(req).then(() => {
     res.json({ msg: "Logout successful" });
   });
 });
