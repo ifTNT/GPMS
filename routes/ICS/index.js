@@ -3,6 +3,7 @@ var db = require('../../db.js');
 var notification = require('./notification');
 var note = require('./note');
 var calender = require('./calender');
+var board = require('./board')
 var router = express.Router();
 
 
@@ -88,7 +89,7 @@ router.post('/calender/setCalender', function (req, res, next) {
 // ====================== Board ======================
 
 router.get('/board/getBoard', function (req, res, next) {
-  calender
+  board
     .getBoard(req.body.year, req.body.nthGroup)
     .then((data) => {
       res.send(JSON.stringify(data));
@@ -99,7 +100,7 @@ router.get('/board/getBoard', function (req, res, next) {
 });
 
 router.get('/board/updateSticker', function (req, res, next) {
-  calender
+  board
     .updateSticker(req.body.year, req.body.nthGroup, req.body.stickerId, req.body.userId, req.body.content)
     .then((data) => {
       res.send(data);

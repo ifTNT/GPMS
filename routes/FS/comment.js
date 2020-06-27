@@ -23,7 +23,7 @@ function addComment(year, nthGroup, content, userId) {
             {
               $pull: {
                 comment: {
-                    name: userId, // 該留言的作者名稱, string
+                    name: userId=="guest"?"訪客":userId, // 該留言的作者名稱, string
                     content: content
                 },
               },

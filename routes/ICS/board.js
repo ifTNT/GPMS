@@ -10,7 +10,7 @@ function getBoard(year = 0, nthGroup = 0) {
             if (err) {
                 reject(err);
             } else {
-                resolve(data.stickers);
+                resolve(data.board.stickers);
             }
         });
     });
@@ -55,6 +55,5 @@ function updateSticker(year, nthGroup, stickerId, userId, content) {
 
 module.exports = {
     getBoard,
-    newSticker,
     updateSticker
 };
