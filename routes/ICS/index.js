@@ -99,7 +99,7 @@ router.get('/board/getBoard', function (req, res, next) {
     });
 });
 
-router.get('/board/updateSticker', function (req, res, next) {
+router.post('/board/updateSticker', function (req, res, next) {
   board
     .updateSticker(req.body.year, req.body.nthGroup, req.body.stickerId, req.body.userId, req.body.content)
     .then((data) => {

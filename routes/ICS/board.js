@@ -21,11 +21,11 @@ function updateSticker(year, nthGroup, stickerId, userId, content) {
         db.Project.findOne({
             year: year,
             nthGroup: nthGroup,
-        }, function (err, data) {
+        },'board', function (err, data) {
             if (err) {
                 reject(err);
             } else {
-                if (eventId == "") {
+                if (stickerId == -1) {
                     data.board.stickers.push({
                         stickerId: data.board.nextStickerId,
                         date: Date.now(), // 公告的日期, date

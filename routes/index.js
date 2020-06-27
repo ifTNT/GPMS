@@ -45,7 +45,8 @@ router.get('/board/:year/:nthGroup', function (req, res, next) {
     .then((data) => {
       console.log(data)
       res.render('board',{
-        stickers: data
+        stickers: data,
+        nthGroup: req.params.nthGroup
         // stickerId: Number, // 公告的ID, integer
         // date: Date, // 公告的日期, date
         // name: String, // 公告的發布者, string
@@ -56,6 +57,10 @@ router.get('/board/:year/:nthGroup', function (req, res, next) {
     .catch((err) => {
       next(err);
     });
+});
+
+router.get('/edit_board/:nthGroup/:stickerId', function (req, res, next) {
+  res.render('edit_board',{userId:req.session.userId, year:req.session.year,stickerId:req.params.stickerId,nthGroup:req.params.nthGroup})
 });
 
 
