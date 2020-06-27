@@ -14,7 +14,7 @@ function addProject(year = 0, nthGroup = 0) {
         teacher: "", // 老師 ID, Profile
         leader: "", // 組長 ID, Profile
         member: [],
-        grade: 0, // 評分, 1~5,若為0則表示尚未評分 integer
+        grade: [], // 評分, 1~5,若為0則表示尚未評分 integer
         browse: 0, // 瀏覽次數，嚴格遞增
         comments: [],
         board: {
