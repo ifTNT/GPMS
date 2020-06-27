@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel=stylesheet type="text/css" href="reset.css">
+		<style>
+
+
+			header {
+				display: flex;
+				justify-content: space-between;
+				height:100px;
+				/*width:100%;*/
+				background-color: #D3D3D3;
+			}
+			.project_picture {
+				height:100px;
+				width:600px;
+				
+				background-color:#ACD6FF;
+			}
+			.content {
+				display:flex;
+				flex-direction: row;
+				 justify-content:flex-end;
+				 height:400px
+			}
+			.project_information {
+				display:flex;
+				flex-direction:column;
+				text-align:left;
+				width:60%;
+				
+			}
+			.project_member {
+				text-align:left;
+				width:20%;
+				
+			}
+			.web_title{
+				height: 20px;
+				width: 100px;
+				align-self: flex-end;
+				/*margin-top: 10px;*/
+			}
+			.web_title img{
+				height: 150px;
+				margin-top: -95px;
+			}
+			.item{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin-top: 70px;
+			}
+			.item img{
+				width: 40px;
+				height: 40px;
+				margin-right: 10px;
+				margin-top: -15px;
+			}
+			font {
+				size:10px;
+			}
+			.user_photo img{
+				height:50px;
+				width:50px;
+				margin:5px;
+				background-color:green;
+				border-radius: 50%;
+				border: 2px solid black;
+			}
+			.teacher_information{
+				display:flex;
+				width:50px;
+				align-items:center;
+			}
+			.leader_information{
+				display:flex;
+				width:50px;
+				align-items:center;
+			}
+			.team_member_information{
+				display:flex;
+				width:50px;
+				align-items:center;
+			}
+			.project_photo{
+				text-align: center;
+				display:flex;
+				width:100%;
+				margin:50px auto;
+				justify-content: center;
+				align-items: flex-end;
+			}
+			.change_photo img{
+				height: 30px;
+			}
+			table {
+				margin:10px auto;
+				width: 80%;
+				height:200px;
+				padding:40px;
+				text-align:left;
+			}
+			td {
+				width:30%;
+				vertical-align: bottom;
+				padding:10px;
+			}
+			#changing_name{
+				display:none;
+			}
+			#changing_introduce{
+				display:none;
+			}
+			#changing_tag{
+				display:none;
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<div class="web_title"><a href="home.html"><img src="title.png"></a></div>
+			<nav>
+                <div class="item">
+                    <div class="item__icon"><img src="login.png"></div>
+                </div>
+            </nav>
+		</header>
+		<div class="project_photo">
+			<div class="project_picture">
+				第X組 題目:XXX
+				<img src="" width="">
+				
+			</div>
+			<div class="change_photo" id="change_project_picture">
+				<img src="camera.png">
+			</div>
+		</div>
+		
+		<div class="content">
+			<div class="project_information">
+				<table>
+					<tr>
+						<td>
+							<font>專題名稱:</font>
+						</td>
+						<td colspan="4" style="border-bottom:3px black solid;">
+							<div class="project_name">  </div>
+							<div id="changing_name">
+								<textarea  rows="1" name="project_name" cols="30"></textarea>
+								<button type="button">更改</button>
+							</div>
+						</td>
+						<td>
+							<div class="change_photo" id="change_project_name" onclick="clickname()">
+								<img src="pencil.png">
+							</div>
+						</td>
+					</tr>
+					<tr rowspan="3">
+						<td>
+							<font>專題介紹:</font>
+						</td>
+						<td colspan="4" style="border-bottom:3px black solid;">
+							<div class="project_introduce">	</div>
+							<div id="changing_introduce">
+								<textarea rows="1" name="project_introduce" cols="30"></textarea>
+								<button  type="button">更改</button>
+							</div>
+						</td>
+						<td>
+							<div class="change_photo" id="change_project_introduce" onclick="clickintroduce()">
+								<img src="pencil.png">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<font>標籤:</font>
+						</td>
+						<td colspan="4" style="border-bottom:3px black solid;">
+							<div class="project_tag">	</div>
+							<div id="changing_tag">
+								<textarea  rows="1" name="project_introduce" cols="30"></textarea>
+								<button  type="button">更改</button>
+							</div>
+						</td>
+						<td>
+							<div class="change_photo" id="change_project_tag" onclick="clicktag()">
+								<img src="pencil.png">
+							</div>
+						</td>
+						
+					</tr>
+				</table>
+			</div>
+			<div class="project_member">
+				<div class="teacher">
+					<font>指導老師:</font>
+					<div class="teacher_information">
+						<div class="user_photo"><img src="user.png"></div>
+						<div class="teacher_name">
+							<a href="user_information.html"><font>User3</font></a>
+						</div>
+					</div>
+					
+				</div>
+				<div class="leader">
+					<font>組長:</font>
+					<div class="leader_information">
+						<div class="user_photo"><img src="user.png"></div>
+						<div class="leader_name">
+							<a href="user_information.html"><font>User1</font></a>
+						</div>
+					</div>
+				</div>
+				<div class="team_member">
+					<font>組員:</font>
+					<div class="team_member_information">
+						<div class="user_photo"><img src="user.png"></div>
+					
+						<div class="team_member_name">
+							<a href="user_information.html"><font>User2</font></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="group_information.js">
+			
+		</script>
+	</body>
+</html>

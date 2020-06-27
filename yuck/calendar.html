@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+        <head>
+                <meta charset='utf-8' />
+                <link rel=stylesheet type="text/css" href="reset.css">
+                <link rel=stylesheet type="text/css" href="calendar.css">
+        </head>
+        <body>
+          <header>
+            <div class="logo"> <a href="home.html"><img src="title.png"></a> </div>
+            <nav>
+                <div class="bell">
+                    <img src="bell.png">
+                </div>
+                <div class="item">
+                    <div class="item_icon">
+                        
+                        <a href="javascript:login()">
+                            <img src="login.png">
+                        </a>
+                        <select onchange="window.open(this.options[this.selectedIndex].value)">
+                            <option value="edit_group_info.html">組別資訊</option>
+                            <option value="notice.html">通知</option>
+                            <option value="exhi_info.html">展覽資訊</option>
+                            <option value="statistic.html">統計分析</option>
+                            <option value="account_manage.html">帳號管理</option>
+                            <option value="home.html">登出</option>
+                        </select>
+                        
+                        <!--老師<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="grade.html">指導組別</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                        <!--組長組員<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                    </div>
+                </div>
+            </nav>
+        </header>
+            
+            <div class="month">      
+                <ul>
+                  <li class="prev">&#10094;</li>
+                  <li class="next">&#10095;</li>
+                  <li>
+                    幾月<br>
+                    <span style="font-size:18px">哪年</span>
+                  </li>
+                </ul>
+              </div>
+
+              <ul class="weekdays">
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+                <li>Sun</li>
+              </ul>
+
+              <ul class="days">  
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li><span class="active">10</span></li>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+                <li>19</li>
+                <li>20</li>
+                <li>21</li>
+                <li>22</li>
+                <li>23</li>
+                <li>24</li>
+                <li>25</li>
+                <li>26</li>
+                <li>27</li>
+                <li>28</li>
+                <li>29</li>
+                <li>30</li>
+                <li>31</li>
+              </ul>
+
+              <div class="list">
+                <div class="list_block">
+                    <li>1. .......</li>
+                </div>
+                
+            </div>
+        </body>
+</html>

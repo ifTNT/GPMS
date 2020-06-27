@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			html, body, div, span, applet, object, iframe,
+			h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+			a, abbr, acronym, address, big, cite, code,
+			del, dfn, em, img, ins, kbd, q, s, samp,
+			small, strike, strong, sub, sup, tt, var,
+			b, u, i, center,
+			dl, dt, dd, ol, ul, li,
+			fieldset, form, label, legend,
+			table, caption, tbody, tfoot, thead, tr, th, td,
+			article, aside, canvas, details, embed, 
+			figure, figcaption, footer, header, hgroup, 
+			menu, nav, output, ruby, section, summary,
+			time, mark, audio, video {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				font-size: 100%;
+				font: inherit;
+				vertical-align: baseline;
+			}
+			article, aside, details, figcaption, figure, 
+			footer, header, hgroup, menu, nav, section {
+				display: block;
+			}
+			body {
+				line-height: 1;
+			}
+			ol, ul {
+				list-style: none;
+			}
+			blockquote, q {
+				quotes: none;
+			}
+			blockquote:before, blockquote:after,
+			q:before, q:after {
+				content: '';
+				content: none;
+			}
+			table {
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+
+
+			header {
+				display: flex;
+				justify-content: space-between;
+				height:100px;
+				/*width:100%;*/
+				background-color: #D3D3D3;
+			}
+			.web_title{
+			height: 20px;
+			width: 100px;
+			align-self: flex-end;
+			/*margin-top: 10px;*/
+			}
+			.web_title img{
+				height: 150px;
+				margin-top: -95px;
+			}
+			.group_number {
+				margin:50px;
+			}
+			.content {
+				width:100%;
+				height:800px;
+			}
+			table {
+				margin:50px auto;
+				width: 400px;
+				height:800px
+				padding:50px;
+				text-align:left;
+			}
+			td {
+				vertical-align:top;
+				margin:50px;
+				padding:25px;
+			}
+			.button {
+				width:40%;
+				display:flex;
+				margin:50px auto;
+				justify-content:space-around;
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<div class="web_title"><img src="title.png"></div>
+
+			<div id="user"></div>
+		</header>
+		<div class="group_number">XXX學年度  第X組</div>
+		<div class="content">
+			<table>
+				<tr>
+					<td>專題名稱:</td>
+					<td><input type="text" name="project_name"/></td>
+				</tr>
+				<tr>
+					<td>專題簡介:</td>
+					 <td>
+						<textarea rows="4" name="project_introduce" cols="20"></textarea>
+					 </td>
+				</tr>
+				<tr>
+					<td>標籤:</td>
+					<td><input type="text" name="project_tag"/></td>
+				</tr>
+				<tr>
+					<td>指導老師:</td> 
+					<td><input type="text" name="project_teacher"/></td>
+				</tr>
+				<tr>
+					<td>組員: </td> 
+					<td><input type="text" name="project_member"/></td> 
+				</tr>
+				<tr>
+					<td>組長:</td> 
+					<td><input type="text" name="project_leader"/></td>
+				</tr>
+			</table>
+			<div class="button">
+				
+				<button type="button">確定更改</button>
+				<button type="button">取消</button>
+			</div>
+			
+		</div>
+		<footer>
+		
+		</footer>
+	</body>
+</html>

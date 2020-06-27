@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel=stylesheet type="text/css" href="reset.css">
+        <style>
+            header{
+                display: flex;
+                justify-content: space-between;
+                background-color: #D3D3D3;
+                height: 100px;
+            }
+            .logo{
+                height: 20px;
+                width: 100px;
+                align-self: flex-end;
+                /*margin-top: 10px;*/
+            }
+            .logo img{
+                height: 150px;
+                width: 400px;
+                margin-top: -95px;
+            }
+            nav{
+                display: flex;
+            }
+            .item{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 70px;
+            }
+            .item img{
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+                margin-top: -15px;
+            }
+            .item_icon {
+                position: relative;
+                display: inline-block;
+                width: 90px;
+                height: 25px;
+                color: rgb(0, 0, 0);
+            }
+            .item_icon a {
+                position: absolute;
+                display: block;
+                width: 90px;
+                height: 25px;
+                line-height: 25px;
+                text-indent: 10px;
+            }
+
+            .item_icon select {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 90px;
+                height: 25px;
+                opacity: 0;
+            }
+            .item_icon select option {
+                text-indent: 10px;
+            }
+            .item_icon select option:hover {
+                background-color: rgba(102, 96, 88, 0.37);
+                color: #fff;
+            }
+            nav{
+                display: flex;
+            }
+            
+            .likePage{
+                margin:25px auto;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 1100px;
+            }
+            .project{
+                margin:20px auto;
+            }
+            .btn{
+                /* padding-top:0px;
+                padding-left:0px; */
+                padding: 0px;
+                margin: 15px;
+                width:515px;
+                height:365px;
+            }
+            .hashtags{
+                display: flex;
+                justify-content: space-around;
+            }
+            .hashtags p{
+                background-color: navajowhite;
+                /* width: 60px; */
+                border-radius: 5px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo"> <a href="home.html"><img src="title.png"></a> </div>
+            <nav>
+                <div class="item">
+                    <div class="item_icon">
+                        <a href="javascript:login()">
+                            <img src="login.png">
+                        </a>
+                        <select onchange="window.open(this.options[this.selectedIndex].value)">
+                            <option value="edit_group_info.html">組別資訊</option>
+                            <option value="notice.html">通知</option>
+                            <option value="exhi_info.html">展覽資訊</option>
+                            <option value="statistic.html">統計分析</option>
+                            <option value="account_manage.html">帳號管理</option>
+                            <option value="home.html">登出</option>
+                        </select>
+                        
+                        <!--老師<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="grade.html">指導組別</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                        <!--組長組員<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="likePage">
+            <img src="heart.png" width="80" height="80">
+            <div class="project">
+                <button class="btn">
+                    <img src="project.jpg" style="width:513px; height:255px">
+                    <font size=6>第一組：第一組名稱</font><br><br>
+                    <font size=5>
+                        <div class="hashtags">
+                            <p style="font-size: 5;">#AI</p>
+                            <p style="font-size: 5;">#AI</p>
+                            <p style="font-size: 5;">#AI</p>
+                        </div><br>
+                    </font>
+                </button>
+                <button class="btn">
+                    <img src="project.jpg" style="width:513px; height:255px">
+                    <font size=6>第一組：第一組名稱</font><br><br>
+                    <font size=5>
+                        <div class="hashtags">
+                            <p style="font-size: 5;">#AI</p>
+                            <p style="font-size: 5;">#AI</p>
+                            <p style="font-size: 5;">#AI</p>
+                        </div><br>
+                    </font>
+                </button>
+                <button class="btn">
+                    <img src="project.jpg" style="width:513px; height:255px">
+                    <font size=6>第一組：第一組名稱</font><br><br>
+                    <font size=5>
+                        <div class="hashtags">
+                            <p style="font-size: 5;">#AI</p>
+                            <p style="font-size: 5;">#AI</p>
+                            <p style="font-size: 5;">#AI</p>
+                        </div><br>
+                    </font>
+                </button>
+                <button class="btn">
+                    <img src="project.jpg" style="width:513px; height:255px">
+                    <font size=6>第一組：第一組名稱</font><br><br>
+                    <font size=5>
+                        <div class="hashtags">
+                            <p style="font-size: 5;">#AI</p>
+                            <p style="font-size: 5;">#AI</p>
+                            <p style="font-size: 5;">#AI</p>
+                        </div><br>
+                    </font>
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

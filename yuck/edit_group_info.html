@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <link rel=stylesheet type="text/css" href="reset.css">
+        <link rel=stylesheet type="text/css" href="edit_group_info.css">
+        <script src="edit_group_info.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="logo"> <a href="home.html"><img src="title.png"></a> </div>
+            <nav>
+                <div class="item">
+                    <div class="item_icon">
+                        <a href="javascript:login()">
+                            <img src="login.png">
+                        </a>
+                        <select onchange="window.open(this.options[this.selectedIndex].value)">
+                            <option value="edit_group_info.html">組別資訊</option>
+                            <option value="notice.html">通知</option>
+                            <option value="exhi_info.html">展覽資訊</option>
+                            <option value="statistic.html">統計分析</option>
+                            <option value="account_manage.html">帳號管理</option>
+                            <option value="home.html">登出</option>
+                        </select>
+                        
+                        <!--老師<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="grade.html">指導組別</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                        <!--組長組員<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                    </div>
+                </div>
+            </nav>
+        </header>
+    
+        <div class="menu">
+            <a href="#107year">107學年度</a>
+            <a href="#108year">108學年度</a>   
+        </div>
+        
+        <div class="content">
+            
+            <div class="boxes">
+                <div class="cover1">
+                    <a href="group_edit.html"></a>
+                </div>
+                    <div class="box box1">
+                        <img src="1_group.png" >
+                        <h1>第一組: 我最強</h1>
+                        <div class="wrap">
+                            <p>#機器人</p>
+                            <p>#零件</p>
+                            <p>#讚啦</p>
+                        </div>    
+                    </div>
+            </div>
+            <div class="boxes">
+                <div class="cover2">
+                    <a href="group_edit.html"></a>
+                </div>
+                <div class="box box2">
+                    <img src="2_group.png">
+                    <h1>第二組: 胡勝清槍</h1>
+                    <div class="wrap">
+                        <p>#無人機</p>
+                        <p>#好玩</p>
+                        <p>#飛飛飛</p>
+                    </div>
+                </div>   
+            </div>
+            <div class="boxes">
+                <div class="cover3">
+                    <a href="group_edit.html"></a>
+                </div>
+                <div class="box box3">
+                    <img src="3_group.png">
+                    <h1>第三組: 呵呵呵</h1>
+                    <div class="wrap">
+                        <p>#嗨</p>
+                        <p>#好難</p>
+                        <p>#想睡覺</p>
+                    </div>
+                </div>   
+            </div>
+        </div>
+        <div class="button">
+            <button><a href="group_edit.html"><img src="add.png"></a></button>
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+        <head>
+                <meta charset='utf-8' />
+                <link rel=stylesheet type="text/css" href="reset.css">
+                <link rel=stylesheet type="text/css" href="note.css">
+                <script src="note.js"></script>
+        </head>
+        <body>
+            <header>
+                <div class="logo"> <a href="home.html"><img src="title.png"></a> </div>
+                <nav>
+                    <div class="bell">
+                        <img src="bell.png">
+                    </div>
+                    <div class="item">
+                        <div class="item_icon">
+                            
+                            <a href="javascript:login()">
+                                <img src="login.png">
+                            </a>
+                            <select onchange="window.open(this.options[this.selectedIndex].value)">
+                                <option value="edit_group_info.html">組別資訊</option>
+                                <option value="notice.html">通知</option>
+                                <option value="exhi_info.html">展覽資訊</option>
+                                <option value="statistic.html">統計分析</option>
+                                <option value="account_manage.html">帳號管理</option>
+                                <option value="home.html">登出</option>
+                            </select>
+                            
+                            <!--老師<select>
+                                <option value="user_information.html">個人資訊</option>
+                                <option value="grade.html">指導組別</option>
+                                <option value="group_edit.html">組別資訊</option>
+                                <option value="like.html">收藏</option>
+                                <option value="note.html">記事本</option>
+                                <option value="board.html">佈告欄</option>
+                                <option value="calendar.html">行事曆</option>
+                                <option>登出</option>
+                            </select>-->
+                            <!--組長組員<select>
+                                <option value="user_information.html">個人資訊</option>
+                                <option value="group_edit.html">組別資訊</option>
+                                <option value="like.html">收藏</option>
+                                <option value="note.html">記事本</option>
+                                <option value="board.html">佈告欄</option>
+                                <option value="calendar.html">行事曆</option>
+                                <option>登出</option>
+                            </select>-->
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="list">
+                <div class="list_block">
+                    <li>1. ......</li>
+                    <img src="edit.png">
+                </div>
+            </div>
+        </body>
+</html>

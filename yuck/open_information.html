@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			
+			html, body, div, span, applet, object, iframe,
+			h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+			a, abbr, acronym, address, big, cite, code,
+			del, dfn, em, img, ins, kbd, q, s, samp,
+			small, strike, strong, sub, sup, tt, var,
+			b, u, i, center,
+			dl, dt, dd, ol, ul, li,
+			fieldset, form, label, legend,
+			table, caption, tbody, tfoot, thead, tr, th, td,
+			article, aside, canvas, details, embed, 
+			figure, figcaption, footer, header, hgroup, 
+			menu, nav, output, ruby, section, summary,
+			time, mark, audio, video {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				font-size: 100%;
+				font: inherit;
+				vertical-align: baseline;
+			}
+			article, aside, details, figcaption, figure, 
+			footer, header, hgroup, menu, nav, section {
+				display: block;
+			}
+			body {
+				line-height: 1;
+			}
+			ol, ul {
+				list-style: none;
+			}
+			blockquote, q {
+				quotes: none;
+			}
+			blockquote:before, blockquote:after,
+			q:before, q:after {
+				content: '';
+				content: none;
+			}
+			table {
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+
+
+			header{
+				display: flex;
+				justify-content: space-between;
+				background-color: #D3D3D3;
+				height: 100px;
+			}
+			.logo{
+				height: 20px;
+				width: 100px;
+				align-self: flex-end;
+				/*margin-top: 10px;*/
+			}
+			.logo img{
+				height: 150px;
+				width: 400px;
+				margin-top: -95px;
+			}
+			nav{
+				display: flex;
+			}
+			.item{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin-top: 70px;
+			}
+			.item img{
+				width: 40px;
+				height: 40px;
+				margin-right: 10px;
+				margin-top: -15px;
+			}
+			.item_icon {
+				position: relative;
+				display: inline-block;
+				width: 90px;
+				height: 25px;
+				color: rgb(0, 0, 0);
+			}
+			.item_icon a {
+				position: absolute;
+				display: block;
+				width: 90px;
+				height: 25px;
+				line-height: 25px;
+				text-indent: 10px;
+			}
+
+			.item_icon select {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 90px;
+				height: 25px;
+				opacity: 0;
+			}
+			.item_icon select option {
+				text-indent: 10px;
+			}
+			.item_icon select option:hover {
+				background-color: rgba(102, 96, 88, 0.37);
+				color: #fff;
+			}
+			.web_title{
+			height: 20px;
+			width: 100px;
+			align-self: flex-end;
+			/*margin-top: 10px;*/
+			}
+			.web_title img{
+				height: 150px;
+				margin-top: -95px;
+			}
+			font {
+				size=10px;
+			}
+			.poster {
+				height: 600px;
+				width: 400px;
+				background-color: blue;
+			}
+			.content {
+				margin:10px;
+				display: flex;
+				justify-content:center;
+				width:100%;
+			}
+			.information {
+				margin:100px;
+				display: flex;
+				width:45%;
+			}
+			.right_part{
+				display: flex;
+				height: 600px;
+				padding:50px;
+				flex-direction:column;
+				justify-content:space-between;
+			}
+			.group_information {
+				height: 200px;
+			}
+			.introduct {
+				height: 300px;
+			}
+			.click_button {
+				margin-top:100px;
+				width: 30%
+				display: flex;
+				flex-direction:column;
+				justify-content:center;
+				padding:10px;
+				
+			}
+			.click_button img{
+				height:50px;
+				width:50px;
+				margin:5px;
+			}
+			.message {
+				width:100%;
+				height:500px;
+				display: flex;
+				flex-direction:column;
+				justify-content:start;
+				background-color: 	#F5F5F5;
+			}
+			.send_message{
+				margin:50px;
+				display: flex;
+				justify-content:center;
+			}
+			#like {
+				display:none;
+			}
+			#unlike {
+				display:block;
+			}
+			#vote {
+				display:none;
+			}
+			#unvote {
+				display:block;
+			}
+			
+			.teacher_button{
+				margin-top: 20px;
+				display: flex;
+				flex-direction: column;
+				height:150px;
+				justify-content: space-around;
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<header>
+            <div class="logo"> <a href="home.html"><img src="title.png"></a> </div>
+            <nav>
+                <div class="item">
+                    <div class="item_icon">
+                        <a href="javascript:login()">
+                            <img src="login.png">
+                        </a>
+                        <select onchange="window.open(this.options[this.selectedIndex].value)">
+                            <option value="edit_group_info.html">組別資訊</option>
+                            <option value="notice.html">通知</option>
+                            <option value="exhi_info.html">展覽資訊</option>
+                            <option value="statistic.html">統計分析</option>
+                            <option value="account_manage.html">帳號管理</option>
+                            <option value="home.html">登出</option>
+                        </select>
+                        
+                        <!--老師<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="grade.html">指導組別</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                        <!--組長組員<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                    </div>
+                </div>
+            </nav>
+        </header>
+		<div class="content">
+			<div class="information">
+				<div class="left_part">
+					<div class="poster">
+						<img src="" width="">
+					</div>
+				</div>
+				<div class="right_part">
+					<div class="group_information">
+						<div class="group_name">
+							<font>第一組:無人機</font>
+						</div>
+						<div class="group_teacher">
+							<font>指導老師:user1</font>
+						</div>
+						<div class="group_leader">
+							<font>組長:user2</font>
+						</div>
+						<div class="group_member">
+							<font>成員:user3</font>
+						</div>
+					</div>
+					<div class="introduct">
+						<font>簡介:an apple a day keep a doctor away</font>
+					</div>
+				</div>
+			</div>
+			<div class="click_button">
+				<div class="unlike">
+					<button id="unlike" type="button" onclick="clickunlike()">
+						<img src="unlike.png">
+					</button>
+				</div>
+				<div class="like">
+					<button id="like" type="button" onclick="clicklike()">
+						<img src="like.png">
+					</button>
+				</div>
+				<div class="vote">
+					<button id="vote" type="button" onclick="clickvote()">
+						<img src="vote.png">
+					</button>
+				</div>
+				<div class="unvote">
+					<button id="unvote" type="button" onclick="clickunvote()">
+						<img src="unvote.png">
+					</button>
+				</div>
+				<div class="teacher_button">
+					<input  type="button" onclick="javascript:location.href='note.html'" value="記事本"></input>
+					<input  type="button" onclick="javascript:location.href='calendar.html'" value="行事曆"></input>
+					<input  type="button" onclick="javascript:location.href='board.html'" value="公告欄"></input>
+					<input  type="button" onclick="javascript:location.href='group_information.html'" value="組別資訊"></input>
+				</div>
+			</div>
+		</div>
+		<div class="message">
+			<div class="send_message">
+				<textarea rows="1" name="message_content" cols="50"></textarea>
+				<button type="button">送出</button>
+			</div>
+		</div>
+		<script src="open_information.js">
+			
+		</script>
+	</body>
+</html>

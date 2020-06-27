@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <link rel=stylesheet type="text/css" href="reset.css">
+        <link rel=stylesheet type="text/css" href="home.css">
+        <script src="home.js"></script>
+        
+    </head>
+    <body>
+        <header>
+            <div class="logo"> <a href="home.html"><img src="title.png"></a> </div>
+            <nav>
+                <div class="item">
+                    <div class="item_icon">
+                        <a href="javascript:login()">
+                            <img src="login.png">
+                        </a>
+                        <select onchange="window.open(this.options[this.selectedIndex].value)">
+                            <option value="edit_group_info.html">組別資訊</option>
+                            <option value="notice.html">通知</option>
+                            <option value="exhi_info.html">展覽資訊</option>
+                            <option value="statistic.html">統計分析</option>
+                            <option value="account_manage.html">帳號管理</option>
+                            <option value="home.html">登出</option>
+                        </select>
+                        
+                        <!--老師<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="grade.html">指導組別</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                        <!--組長組員<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <div class="sidebar_left"></div>
+        <div class="sidebar_right">
+            <a class="btn-select" id="btn_select">
+                <span class="cur-select">Menu
+                    <img src="arrow.png">
+                </span>
+                <select>
+                    <option>第一組</option>
+                    <option>第二組</option>
+                    <option>第三組</option>
+                    <option>第四組</option>
+                    <option>第五組</option>
+                    <option>第六組</option>
+                    <option>第七組</option>
+                    <option>第八組</option>
+                    <option>第九組</option>
+                    <option>第十組</option>
+                </select>
+            </a>
+        </div>
+        <!--<ul>
+            <li class="prev">&#10094;</li>
+            <li class="next">&#10095;</li>
+        </ul>-->
+        <div class="menu">
+            <a href="#107year">107學年度</a>
+            <a href="#108year">108學年度</a>   
+        </div>
+
+        <div class="info_block">
+            <img src="info.png">
+        </div>
+        <div class="content">
+            
+            <div class="boxes">
+                <a href="open_information.html">
+                    <div class="box box1">
+                        
+                        <img src="1_group.png">
+                        <h1>第一組: 我最強</h1>
+                        <div class="wrap">
+                            <p>#機器人</p>
+                            <p>#零件</p>
+                            <p>#讚啦</p>
+                        </div>    
+                    </div>
+                </a>
+             </div>
+             
+            <div class="boxes">
+                <a href="open_information.html">
+                    <div class="box box2">
+                        <img src="2_group.png">
+                        <h1>第二組: 胡勝清槍</h1>
+                        <div class="wrap">
+                            <p>#無人機</p>
+                            <p>#好玩</p>
+                            <p>#飛飛飛</p>
+                        </div>
+                    </div>   
+                </a>
+            </div>
+
+            
+        </div>
+        
+        <footer>
+            軟工小組:
+            胡詠翔 鄭日成 許雅玟 吳宛貞 黃怡萍
+        </footer>
+    </body>
+</html>

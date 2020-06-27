@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel=stylesheet type="text/css" href="reset.css">
+        <style>
+            header {
+                display: flex;
+                justify-content: space-between;
+                background-color: #D3D3D3;
+                height: 100px;
+            }
+            .web_title{
+			height: 20px;
+			width: 100px;
+			align-self: flex-end;
+			/*margin-top: 10px;*/
+			}
+			.web_title img{
+				height: 150px;
+				margin-top: -95px;
+			}
+            nav{
+                display: flex;
+            }
+            .item{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 70px;
+            }
+            .item img{
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+                margin-top: -15px;
+            }
+            .boardPage{
+                margin:25px auto;
+                display: flex;
+                flex-wrap:wrap;
+                justify-content: flex-start;
+                width: 1000px;
+            }
+            table{
+                margin: 15px;
+                border:3px #5B5B5B solid;
+            }
+            td{
+                border:3px #5B5B5B solid;
+                vertical-align: middle;
+            }
+            .newBoard{
+                margin: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border:3px #5B5B5B solid;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="web_title"><a href="home.html"><img src="title.png"></a></div>
+			<nav>
+                <div class="item">
+                    <div class="item__icon"><img src="login.png"></div>
+                </div>
+            </nav>
+        </header>
+        <div class="boardPage">
+            <table width="300px">
+                <tr>
+                    <td height="50px">日期:</td>
+                </tr>
+                <tr>
+                    <td height="50px">發布者:</td>
+                </tr>
+                <tr>
+                    <td height="120px">事項:</td>
+                </tr>
+            </table>
+            <table width="300px">
+                <tr>
+                    <td height="50px">日期:</td>
+                </tr>
+                <tr>
+                    <td height="50px">發布者:</td>
+                </tr>
+                <tr>
+                    <td height="120px">事項:</td>
+                </tr>
+            </table>
+            <table width="300px">
+                <tr>
+                    <td height="50px">日期:</td>
+                </tr>
+                <tr>
+                    <td height="50px">發布者:</td>
+                </tr>
+                <tr>
+                    <td height="120px">事項:</td>
+                </tr>
+            </table>
+            <table width="300px">
+                <tr>
+                    <td height="50px">日期:</td>
+                </tr>
+                <tr>
+                    <td height="50px">發布者:</td>
+                </tr>
+                <tr>
+                    <td height="120px">事項:</td>
+                </tr>
+            </table>
+            <div class="newBoard" style="width:300px; height: 223px">
+                <a href="edit_board.html"><img src="add.png" style="width:65px; height:65px"></a>
+            </div>
+        </div>
+    </body>
+</html>

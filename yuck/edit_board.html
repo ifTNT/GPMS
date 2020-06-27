@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel=stylesheet type="text/css" href="reset.css">
+        <style>
+            header {
+                display: flex;
+                justify-content: space-between;
+                background-color: #D3D3D3;
+                height: 100px;
+            }
+            .web_title{
+			height: 20px;
+			width: 100px;
+			align-self: flex-end;
+			/*margin-top: 10px;*/
+			}
+			.web_title img{
+				height: 150px;
+				margin-top: -95px;
+			}
+            nav{
+                display: flex;
+            }
+            .item{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 70px;
+            }
+            .item img{
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+                margin-top: -15px;
+            }
+            .editBoardPage{
+                margin:auto;
+                /* height:800px; */
+                width:80%;
+                display: flex;
+                justify-content: center;
+                /* align-items: center; */
+                /* background-color: blueviolet; */
+            }
+            table {
+                margin:80px auto;
+                padding:50px;
+                width: 450px;
+                height: 400px;
+                text-align:left;
+                vertical-align: bottom;
+                /* border:3px #5B5B5B solid; */
+			}
+			td {
+				vertical-align:top;
+				/* margin:50px; */
+                padding:20px;
+                /* border:3px #5B5B5B solid; */
+			}
+            .button{
+                width:30%;
+				display:flex;
+				margin:auto;
+				justify-content:space-around;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="web_title"><a href="home.html"><img src="title.png"></a></div>
+			<nav>
+                <div class="item">
+                    <div class="item__icon"><img src="login.png"></div>
+                </div>
+            </nav>
+        </header>
+        <div class="editBoardPage">
+            <table>
+                <tr>
+                    <td><font size="5">日期:</font></td>
+                    <td><input type="text" name="announceDate" style="font-size: large; width: 250px;"></td>
+                </tr>
+                <tr>
+                    <td><font size="5">發布者:</font></td>
+                    <td><input type="text" name="announcer" style="font-size: large; width: 250px;"/></td>
+                </tr>
+                <tr>
+                    <td><font size="5">事項:</font></td>
+                    <td>
+                        <textarea rows="5" cols="27" name="announcement" style="font-size: large;"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="button">
+            <button type="button" style="width: 100px; height: 40px;"><font size="4">發布</font></button>
+            <a href="board.html"><button type="button" style="width: 100px; height: 40px;"><font size="4">取消</font></button></a>
+        </div> 
+    </body>
+</html>

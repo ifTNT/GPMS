@@ -1,0 +1,157 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: #D3D3D3;
+    height: 100px;
+}
+.logo{
+    height: 20px;
+    width: 100px;
+    align-self: flex-end;
+    /*margin-top: 10px;*/
+}
+.logo img{
+    height: 150px;
+    width: 400px;
+    margin-top: -95px;
+}
+nav{
+    display: flex;
+}
+.item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+}
+.item img{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    margin-top: -15px;
+}
+.item_icon {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 25px;
+    color: rgb(0, 0, 0);
+}
+.item_icon a {
+    position: absolute;
+    display: block;
+    width: 90px;
+    height: 25px;
+    line-height: 25px;
+    text-indent: 10px;
+}
+
+.item_icon select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 25px;
+    opacity: 0;
+}
+.item_icon select option {
+    text-indent: 10px;
+}
+.item_icon select option:hover {
+    background-color: rgba(102, 96, 88, 0.37);
+    color: #fff;
+}
+.menu{
+    background-color: rgba(51, 51, 51, 0.808);
+    overflow: auto;
+    white-space: nowrap;
+    margin-top: 20px;
+    margin-bottom: -50px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.menu a{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    /*background-color: thistle;*/
+}
+.menu a:hover{
+    background-color: #777;
+}
+
+.box {
+    display:inline-block;
+    width: 800px;
+    height: 800px;
+    
+    margin-left: 370px;
+    margin-top: 100px;
+    background-color: #F5F5F5;
+}
+.ticket_box{
+    width: 400px;
+    height: 400px;
+    background-color: #e0e0e0;
+    float: left;
+}
+.ticket_box h1{
+    text-align: center;
+}
+.ticket_box img{
+    width: 95%;
+    height: 95%;
+    margin-left: 10px;
+}
+#C_table {
+    display:table;
+    width: 380px;
+    height: 380px;  
+    text-align: center;
+    padding: 10px;
+    background-color: #e0e0e0;
+}
+#C_table h1{
+    margin-left: 45px;
+}
+.C_tr {
+    display: table-row;
+    background-color: white;
+}
+.C_td {
+    border:1px solid gray;
+    display: table-cell;
+    background-color: white;
+}
+.message_box{
+    width: 400px;
+    height: 400px;
+    background-color: #e0e0e0;
+    
+}
+.message_box h1{
+    text-align: center;
+}
+.message_box img{
+    width: 95%;
+    height: 95%;
+    margin-left: 10px;
+}
+.browse_box{
+    width: 400px;
+    height: 400px;
+    background-color: #e0e0e0;
+    float: right;
+    margin-top: -400px;
+}
+.browse_box h1{
+    text-align: center;
+}
+.browse_box img{
+    width: 95%;
+    height: 95%;
+    margin-left: 10px;
+}
