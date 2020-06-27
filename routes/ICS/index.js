@@ -13,6 +13,9 @@ router.get('/test', function (req, res) {
 });
 // req.session
 /* GET users listing. */
+
+
+// ====================== Notification ======================
 router.get('/notification/getNotification', function (req, res, next) {
   notification
     .getNotification(req.params.userId)
@@ -35,6 +38,8 @@ router.post('/notification/sendNotification', function (req, res, next) {
   // res.send('respond with a resource');
 });
 
+// ====================== Note ======================
+
 router.get('/note/getNote', function (req, res, next) {
   res.render('notePage', {
     noteText: note.getNote(req.query.year, req.query.nthGroup)
@@ -56,9 +61,11 @@ router.post('/note/updateNote', function (req, res, next) {
     })
 });
 
+// ====================== Calender ======================
+
 router.get('/calender/getCalender', function (req, res, next) {
   calender
-    .getCalender(req.body.year, req.body.nthGroup)
+    .getCalender(req.query.year, req.query.nthGroup)
     .then((data) => {
       res.send(JSON.stringify(data));
     })
@@ -69,7 +76,7 @@ router.get('/calender/getCalender', function (req, res, next) {
 
 router.post('/calender/setCalender', function (req, res, next) {
   calender
-    .getCalender(req.body.year, req.body.nthGroup, req.body.eventId, req.body.date, req.body.content)
+    .setCalender(req.body.year, req.body.nthGroup, req.body.eventId, req.body.date, req.body.content)
     .then((data) => {
       res.send(data);
     })
@@ -77,5 +84,30 @@ router.post('/calender/setCalender', function (req, res, next) {
       next(err);
     });
 });
+
+// ====================== Board ======================
+
+router.get('/board/getBoard', function (req, res, next) {
+  calender
+    .getBoard(req.body.year, req.body.nthGroup)
+    .then((data) => {
+      res.send(JSON.stringify(data));
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get('/board/updateSticker', function (req, res, next) {
+  calender
+    .updateSticker(req.body.year, req.body.nthGroup, req.body.stickerId, req.body.userId, req.body.content)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 
 module.exports = router;
