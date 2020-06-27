@@ -5,6 +5,12 @@ const dateFormat = require("dateformat");
 var router = express.Router();
 var projectInformation = require("./EPIS/projectInformation");
 var board = require('./ICS/board');
+// var calender = require('./ICS/calendar');
+var note = require('./ICS/note');
+var statisticsAnalysis = require('./MS/statisticsAnalysis');
+
+
+
 
 
 
@@ -30,7 +36,9 @@ router.get("/", async function (req, res, next) {
 });
 
 router.get("/login", async function (req, res, next) {
-  res.render("login", { session: req.session });
+  res.render("login", {
+    session: req.session
+  });
 });
 
 router.get("/project/:year/:nthGroup", function (req, res, next) {
@@ -65,7 +73,7 @@ router.get('/board/:year/:nthGroup', function (req, res, next) {
     .getBoard(req.params.year, req.params.nthGroup)
     .then((data) => {
       console.log(data)
-      res.render('board',{
+      res.render('board', {
         stickers: data,
         nthGroup: req.params.nthGroup
         // stickerId: Number, // 公告的ID, integer
@@ -81,7 +89,58 @@ router.get('/board/:year/:nthGroup', function (req, res, next) {
 });
 
 router.get('/edit_board/:nthGroup/:stickerId', function (req, res, next) {
-  res.render('edit_board',{userId:req.session.userId, year:req.session.year,stickerId:req.params.stickerId,nthGroup:req.params.nthGroup})
+  res.render('edit_board', {
+    userId: req.session.userId,
+    year: req.session.year,
+    stickerId: req.params.stickerId,
+    nthGroup: req.params.nthGroup
+  })
+});
+
+
+router.get('/calendar/:year/:nthGroup', function (req, res, next) {
+  res.render('calendar', {
+    year: req.params.year,
+    nthGroup: req.params.nthGroup
+  })
+});
+
+router.get('/note/:year/:nthGroup', function (req, res, next) {
+  note.getNote(req.params.year, req.params.nthGroup)
+    .then((data) => {
+      res.render('note', {
+        noteText: data,
+        year: req.params.year,
+        nthGroup: req.params.nthGroup
+      });
+    }).catch((err) => {
+      next(err);
+    })
+
+});
+
+
+router.get('/notice', function (req, res, next) {
+  res.render('notice')
+});
+
+router.get('/statistics/:year', function (req, res, next) {
+  if (req.params.year === undefined) {
+    next({
+      message: "Invalid argument"
+    });
+  } else {
+    statisticsAnalysis
+      .getStatistics(req.params.year)
+      .then((data) => {
+        console.log(data)
+        res.render('statistic', {
+          results: data
+        })
+      }).catch((err) => {
+        next(err)
+      });
+  }
 });
 
 

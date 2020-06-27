@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <link rel=stylesheet type="text/css" href="/stylesheets/reset.css">
+    <link rel=stylesheet type="text/css" href="/stylesheets/note.css">
+    
+</head>
+
+<body>
+    <header>
+        <div class="logo"> <a href="home.html"><img src="/images/title.png"></a> </div>
+        <nav>
+            <div class="bell" style="position: relative;">
+                <img src="/images/bell.png">
+                <p class="notifyCounter" style="position: absolute;bottom: 2px;right: 2px;color: red;"></p>
+                <ul class="notify" style="position: absolute;bottom: -10px;left: -40px;text-align: center;width: 120px;display: none;">
+
+                </ul>
+            </div>
+            <div class="item">
+                <div class="item_icon">
+
+                    <a href="javascript:login()">
+                        <img src="/images/login.png">
+                    </a>
+                    <select onchange="window.open(this.options[this.selectedIndex].value)">
+                        <option value="edit_group_info.html">組別資訊</option>
+                        <option value="notice.html">通知</option>
+                        <option value="exhi_info.html">展覽資訊</option>
+                        <option value="statistic.html">統計分析</option>
+                        <option value="account_manage.html">帳號管理</option>
+                        <option value="home.html">登出</option>
+                    </select>
+
+                    <!--老師<select>
+                                <option value="user_information.html">個人資訊</option>
+                                <option value="grade.html">指導組別</option>
+                                <option value="group_edit.html">組別資訊</option>
+                                <option value="like.html">收藏</option>
+                                <option value="note.html">記事本</option>
+                                <option value="board.html">佈告欄</option>
+                                <option value="calendar.html">行事曆</option>
+                                <option>登出</option>
+                            </select>-->
+                    <!--組長組員<select>
+                                <option value="user_information.html">個人資訊</option>
+                                <option value="group_edit.html">組別資訊</option>
+                                <option value="like.html">收藏</option>
+                                <option value="note.html">記事本</option>
+                                <option value="board.html">佈告欄</option>
+                                <option value="calendar.html">行事曆</option>
+                                <option>登出</option>
+                            </select>-->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="list">
+        <div class="list_block">
+            <textarea style="width: 100%;height: 100%;margin: 0;border: 0;padding: 0;"></textarea>
+            <!-- <input  type="text" value=> -->
+            <img src="/images/edit.png">
+        </div>
+    </div>
+    <div class="data" style="display: none;">
+        <div class="nthGroup"><%= nthGroup %></div>
+        <div class="year">20</div>
+        <!-- <div class="year"><%= year %></div> -->
+        <div class="text"><%= noteText %></div>
+    </div>
+    <script>
+        var year = document.querySelector(".year").textContent
+        var nthGroup = document.querySelector(".nthGroup").textContent
+        var text = document.querySelector(".text").textContent
+        document.querySelector(".list_block textarea").value = text;
+
+        function postData() {
+            // Default options are marked with *
+            return fetch('/ics/note/updateNote', {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    body: JSON.stringify({
+                        "year": year,
+                        "nthGroup": nthGroup,
+                        "noteText": document.querySelector(".list_block textarea").value
+                    }),
+                    headers: {
+                        'user-agent': 'Mozilla/4.0 MDN Example',
+                        'content-type': 'application/json'
+                    },
+                })
+                .then(response => {
+                    console.log(response)
+                    if(response.ok){
+                        alert("修改成功")
+                    }else{
+                        alert("修改失敗")
+                    }
+                }) // 輸出成 json
+        }
+        document.querySelector(".list_block img").addEventListener('click', postData, false);
+    </script>
+    <script src="/javascripts/note.js"></script>
+    <script src="/javascripts/find_notice.js"></script>
+</body>
+
+</html>

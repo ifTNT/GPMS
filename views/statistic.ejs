@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <link rel=stylesheet type="text/css" href="/stylesheets/reset.css">
+    <link rel=stylesheet type="text/css" href="/stylesheets/statistic.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="logo"> <a href="home.html"><img src="/images/title.png"></a> </div>
+        <nav>
+            <div class="item">
+                <div class="item_icon">
+                    <a href="javascript:login()">
+                        <img src="/images/login.png">
+                    </a>
+                    <select onchange="window.open(this.options[this.selectedIndex].value)">
+                        <option value="edit_group_info.html">組別資訊</option>
+                        <option value="notice.html">通知</option>
+                        <option value="exhi_info.html">展覽資訊</option>
+                        <option value="statistic.html">統計分析</option>
+                        <option value="account_manage.html">帳號管理</option>
+                        <option>登出</option>
+                    </select>
+                    <!--老師<select>
+                            <option>個人資訊</option>
+                            <option>指導組別</option>
+                            <option>收藏</option>
+                            <option>登出</option>
+                        </select>-->
+                    <!--組長組員<select>
+                            <option>個人資訊</option>
+                            <option>組別資訊</option>
+                            <option>收藏</option>
+                            <option>記事本</option>
+                            <option>佈告欄</option>
+                            <option>行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="menu">
+        <a href="#107year">107學年度</a>
+        <a href="#108year">108學年度</a>
+    </div>
+    <div class="context">
+        <div class="box">
+            <div class="ticket_box">
+                <h1>票數統計</h1>
+                <table border="1">
+                    <% for(var i=0; i<results.length; i++) { %>
+                    <tr>
+                        　<td>第<%= results[i].nthGroup %>組</td>
+                        　<td><%= results[i].ballot %></td>
+                        　</tr>
+                    <% } %>
+                </table>
+            </div>
+            <div id="C_table">
+                <h1>排名</h1>
+                <% for(var i=0; i<results.length; i++) { %>
+                <div class="C_tr">
+                    <div class="C_td">第<%= results[i].nthGroup %>組</div>
+                    <div class="C_td"><%= results[i].rank %></div>
+                </div>
+                <% } %>
+            </div>
+            <div class="message_box">
+                <h1>留言次數</h1>
+                <table border="1">
+                    <% for(var i=0; i<results.length; i++) { %>
+                    <tr>
+                        　<td>第<%= results[i].nthGroup %>組</td>
+                        　<td><%= results[i].comments %></td>
+                        　</tr>
+                    <% } %>
+                </table>
+            </div>
+            <div class="browse_box">
+                <h1>瀏覽次數</h1>
+                <table border="1">
+                    <% for(var i=0; i<results.length; i++) { %>
+                    <tr>
+                        　<td>第<%= results[i].nthGroup %>組</td>
+                        　<td><%= results[i].browse %></td>
+                        　</tr>
+                    <% } %>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script src="/javascripts/home.js"></script>
+</body>
+
+</html>

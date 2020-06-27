@@ -2,7 +2,7 @@ var express = require('express');
 var db = require('../../db.js');
 
 
-function getCalender(year = 0, nthGroup = 0) {
+function getCalendar(year = 0, nthGroup = 0) {
     return new Promise((resolve, reject) => {
         db.Project.findOne({
             year: year,
@@ -17,7 +17,7 @@ function getCalender(year = 0, nthGroup = 0) {
     });
 }
 
-function setCalender(year, nthGroup, eventId, date, content) {
+function setCalendar(year, nthGroup, eventId, date, content) {
     return new Promise((resolve, reject) => {
         db.Project.findOne({
             year: year,
@@ -54,6 +54,6 @@ function setCalender(year, nthGroup, eventId, date, content) {
 }
 
 module.exports = {
-    getCalender,
-    setCalender,
+    getCalendar,
+    setCalendar,
 };

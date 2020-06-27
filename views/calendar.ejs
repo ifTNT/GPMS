@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <link rel=stylesheet type="text/css" href="/stylesheets/reset.css">
+  <link rel=stylesheet type="text/css" href="/stylesheets/calendar.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo"> <a href="home.html"><img src="/images/title.png"></a> </div>
+    <nav>
+      <div class="bell">
+        <img src="/images/bell.png">
+      </div>
+      <div class="item">
+        <div class="/images/item_icon">
+          <div class="item_icon">
+          <a href="javascript:login()">
+            <img src="/images/login.png">
+          </a>
+        </div>
+          <select onchange="window.open(this.options[this.selectedIndex].value)">
+            <option value="edit_group_info.html">組別資訊</option>
+            <option value="notice.html">通知</option>
+            <option value="exhi_info.html">展覽資訊</option>
+            <option value="statistic.html">統計分析</option>
+            <option value="account_manage.html">帳號管理</option>
+            <option value="home.html">登出</option>
+          </select>
+
+          <!--老師<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="grade.html">指導組別</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+          <!--組長組員<select>
+                            <option value="user_information.html">個人資訊</option>
+                            <option value="group_edit.html">組別資訊</option>
+                            <option value="like.html">收藏</option>
+                            <option value="note.html">記事本</option>
+                            <option value="board.html">佈告欄</option>
+                            <option value="calendar.html">行事曆</option>
+                            <option>登出</option>
+                        </select>-->
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="month">
+    <ul>
+      <li class="prev">&#10094;</li>
+      <li class="next">&#10095;</li>
+      <li>
+        <span class="monthYear" style="font-size:18px">7月<br>2020</span>
+      </li>
+    </ul>
+  </div>
+
+  <ul class="weekdays">
+    <li>Mon</li>
+    <li>Tue</li>
+    <li>Wed</li>
+    <li>Thu</li>
+    <li>Fri</li>
+    <li>Sat</li>
+    <li>Sun</li>
+  </ul>
+
+  <ul class="days">
+    <li>29</li>
+    <li>30</li>
+    <% for(var i=0; i<=31; i++) { %>
+    <li><%= i %></li>
+    <% } %>
+  </ul>
+
+  <div class="list">
+    <div class="list_block">
+      1. .......
+    </div>
+
+  </div>
+  <div class="data" style="display: none;">
+    <div class="nthGroup"><%= nthGroup %></div>
+    <div class="year"><%= year %></div>
+  </div>
+  <script>
+    var days = document.querySelectorAll(".days")
+    var year = document.querySelector(".year").textContent
+    var nthGroup = document.querySelector(".nthGroup").textContent
+    // postData('/calender/getCalender?year=' + year+'&nthGroup='+nthGroup)
+    //   .then(data => console.log(data)) // JSON from `response.json()` call
+    //   .catch(error => console.error(error))
+    var list={};
+
+    function postData() {
+      // Default options are marked with *
+      return fetch('/ics/calendar/getCalendar?year=' + year + '&nthGroup=' + nthGroup, {
+          method: 'GET', // *GET, POST, PUT, DELETE, etc.
+          mode: 'cors', // no-cors, cors, *same-origin
+          redirect: 'follow', // manual, *follow, error
+          referrer: 'no-referrer', // *client, no-referrer
+        })
+        .then(response => {
+          for (var i = 0; i < response.length; i++) {
+            days[new Date(response[i].date).detDate() + 1].style.backgroundColor = "yellow";
+            list[new Date(response[i].date).detDate() + 1] = response[i].content;
+          }
+        }) // 輸出成 json
+    }
+    postData();
+    var place = document.querySelector(".list_block");
+    function display(e) {
+      if(list.hasOwnProperty(e.target.textContent)){
+        place.innerHTML = e.target.textContent+"號<br>"+list[e.target.textContent];
+      }else{
+        place.innerHTML = e.target.textContent+"號<br>";
+      }
+    }
+    days.forEach(element => {
+      element.addEventListener('click', display, false);
+    });
+  </script>
+</body>
+
+</html>

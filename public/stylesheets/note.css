@@ -64,17 +64,19 @@ nav{
 }
 .list_block
 {
+    position: relative;
     border: gray solid 2px;
     margin-left: 20%;
     margin-top: 10px;
     height: 500px;
     width: 900px;
     line-height: 100px;
-    padding-left: 20px;
 }
 .list_block img{
+    position: absolute;
+    bottom: 7px;
+    right: 7px;
     width: 30px;
     height: 30px;
-    margin-top: 355px;
-    margin-left: 850px;
+    z-index: 100;
 }
