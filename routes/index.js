@@ -21,7 +21,6 @@ router.get("/", async function (req, res, next) {
   let exhibitions = await exhibitionInformation.getExhibitions();
   let currentExhibition = await exhibitionInformation.getExhibition(year);
   await req.session.save();
-  console.log(req.session);
   res.render("home", {
     projects,
     exhibitions,
@@ -228,10 +227,24 @@ router.get("/exhi_info", async function (req, res, next) {
     let exhibitions = await exhibitionInformation.getExhibitions();
     let currentExhibition = await exhibitionInformation.getExhibition(year);
     await req.session.save();
-    console.log(req.session);
     res.render("exhi_info", {
       exhibitions,
       currentExhibition,
+      session: req.session,
+      dateFormat,
+    });
+  }
+});
+
+router.get("/exhibition_edit", async function (req, res, next) {
+  if (req.session.roll !== "admin") {
+    res.redirect("/");
+  } else {
+    let year = req.session.year;
+    let currentExhibition = await exhibitionInformation.getExhibition(year);
+    await req.session.save();
+    res.render("exhibition_edit", {
+      exhi: currentExhibition,
       session: req.session,
       dateFormat,
     });

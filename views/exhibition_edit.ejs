@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel=stylesheet type="text/css" href="/stylesheets/reset.css">
+		<style>
+
+
+			header {
+				display: flex;
+				justify-content: space-between;
+				height:100px;
+				/*width:100%;*/
+				background-color: #D3D3D3;
+			}
+			.project_picture {
+				font-size: 20px;
+			}
+			.content {
+				display:flex;
+				flex-direction: row;
+				 justify-content:center;
+				 height:400px
+			}
+			.project_information {
+				display:flex;
+				flex-direction:column;
+				text-align:left;
+				width:60%;
+				
+			}
+			.project_member {
+				text-align:left;
+				width:20%;
+				
+			}
+			.web_title{
+				height: 20px;
+				width: 100px;
+				align-self: flex-end;
+				/*margin-top: 10px;*/
+			}
+			.web_title img{
+				height: 150px;
+				margin-top: -95px;
+			}
+			.item{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin-top: 70px;
+			}
+			.item img{
+				width: 40px;
+				height: 40px;
+				margin-right: 10px;
+				margin-top: -15px;
+			}
+			font {
+				size:10px;
+			}
+			.user_photo img{
+				height:50px;
+				width:50px;
+				margin:5px;
+				background-color:green;
+				border-radius: 50%;
+				border: 2px solid black;
+			}
+			.teacher_information{
+				display:flex;
+				width:50px;
+				align-items:center;
+			}
+			.leader_information{
+				display:flex;
+				width:50px;
+				align-items:center;
+			}
+			.team_member_information{
+				display:flex;
+				width:50px;
+				align-items:center;
+			}
+			.project_photo{
+				text-align: center;
+				display:flex;
+				width:100%;
+				margin:50px auto 0 auto;
+				justify-content: center;
+				align-items: flex-end;
+			}
+			.change_photo img{
+				height: 30px;
+			}
+			table {
+				margin:10px auto;
+				width: 80%;
+				height:200px;
+				padding:40px;
+				text-align:left;
+			}
+			td {
+				width:30%;
+				vertical-align: bottom;
+				padding:10px;
+			}
+			#changing_time{
+				display:none;
+			}
+			#changing_location{
+				display:none;
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<div class="web_title"><a href="/"><img src="/images/title.png"></a></div>
+			<nav>
+                <div class="item">
+                    <div class="item__icon"><img src="/images/login.png"></div>
+                </div>
+            </nav>
+		</header>
+		<div class="project_photo">
+			<div class="project_picture">
+				<span id="year"><%=exhi.year%></span>學年度畢業專題展覽
+				
+			</div>
+			<!-- <div class="change_photo" id="change_project_picture">
+				<img src="/images/camera.png">
+			</div> -->
+		</div>
+		
+		<div class="content">
+			<div class="project_information">
+				<table>
+					<tr>
+						<td>
+							<font>展覽時間:</font>
+						</td>
+						<td colspan="4" style="border-bottom:3px black solid;">
+							<div class="exhi_time">
+								<%= dateFormat(exhi.date, "yyyy-mm-dd")%>
+							</div>
+							<div id="changing_time">
+								<textarea  rows="1" name="exhi_time" cols="30"><%= dateFormat(exhi.date, "yyyy-mm-dd")%></textarea>
+							</div>
+						</td>
+						<td>
+							<div class="change_photo" id="change_exhi_time" onclick="clicktime()">
+								<img src="/images/pencil.png">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<font>展覽地點:</font>
+						</td>
+						<td colspan="4" style="border-bottom:3px black solid;">
+							<div class="exhi_location">
+								<%= exhi.location %>
+							</div>
+							<div id="changing_location">
+								<textarea  rows="1" name="exhi_location" cols="30"><%= exhi.location %></textarea>
+							</div>
+						</td>
+						<td>
+							<div class="change_photo" id="change_exhi_location" onclick="clicklocation()">
+								<img src="/images/pencil.png">
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<script src="/javascripts/exhibition_edit.js">
+			
+		</script>
+	</body>
+</html>

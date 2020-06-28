@@ -45,6 +45,20 @@ router.get("/exhib/:year", function (req, res, next) {
   }
 });
 
+router.post("/exhib/:year", function (req, res, next) {
+  if (req.params.year === undefined) {
+    next({ message: "Invalid argument" });
+  } else {
+    let year = parseInt(req.params.year);
+    exhibitionInformation
+      .setExhibition(year, req.body)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => next(err));
+  }
+});
+
 // Freeze an exhibition
 router.get("/exhib/:year/freeze", function (req, res, next) {
   if (req.params.year === undefined) {

@@ -89,8 +89,10 @@
         時間：<span><%= dateFormat(currentExhibition.date, "yyyy-mm-dd")%></span>&nbsp;&nbsp;&nbsp;&nbsp;9:00~17:00<br/>
     </div>
     <div class="button">
-      <button type="button"><a href="/exhibition_edit">更改資料</a></button>
-      <button type="button" onclick="freeze()">凍結資料</button>
+      <% if(!currentExhibition.freezed){ %>
+        <button type="button"><a href="/exhibition_edit">更改資料</a></button>
+        <button type="button" onclick="freeze()">凍結資料</button>
+      <% } %>
     </div>
     <script>
         function freeze(){
