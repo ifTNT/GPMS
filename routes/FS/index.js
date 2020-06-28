@@ -85,8 +85,9 @@ router.get('/comment/getComments', function (req, res, next) {
 });
 
 router.post('/comment/addComment', function (req, res, next) {
+  var uid = req.session.userId == "" ? "訪客" : req.session.userId;
   comment
-    .addComment(req.body.year, req.body.nthGroup, req.body.content, req.body.userId)
+    .addComment(req.body.year, req.body.nthGroup, req.body.content, uid)
     .then((data) => {
       res.send(data);
     }).catch((err) => {

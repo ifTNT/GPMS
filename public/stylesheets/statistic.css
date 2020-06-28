@@ -126,6 +126,15 @@ nav{
     display: table-cell;
     background-color: white;
 }
+table{
+    text-align: center;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+table td{
+    width: 100px;
+    border: 1px solid black;
+}
 .message_box{
     width: 400px;
     height: 400px;

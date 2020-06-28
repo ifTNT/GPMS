@@ -11,7 +11,7 @@ function getNote(year, nthGroup) {
             if (err) {
                 reject(err);
             } else {
-                resolve(data.noteText);
+                resolve(data.note.noteText);
             }
         });
     });
@@ -19,7 +19,8 @@ function getNote(year, nthGroup) {
 
 function updateNote(year, nthGroup, text) {
     return new Promise((resolve, reject) => {
-        db.Project.findOneAndUpdate({
+        // console.log(text)
+        db.Project.updateOne({
             year: year,
             nthGroup: nthGroup
         }, {

@@ -2,7 +2,7 @@ var express = require('express');
 var db = require('../../db.js');
 var notification = require('./notification');
 var note = require('./note');
-var calender = require('./calender');
+var calendar = require('./calendar');
 var board = require('./board')
 var router = express.Router();
 
@@ -17,7 +17,7 @@ router.get('/test', function (req, res) {
 
 
 // ====================== Notification ======================
-router.get('/notification/getNotification', function (req, res, next) {
+router.get('/notification/getNotification/:userId', function (req, res, next) {
   notification
     .getNotification(req.params.userId)
     .then((data) => {
@@ -30,7 +30,7 @@ router.get('/notification/getNotification', function (req, res, next) {
 
 router.post('/notification/sendNotification', function (req, res, next) {
   notification
-    .sendNotification(req.session, req.body.targetUserId, req.body.sourceUserId, req.body.content)
+    .sendNotification(req.body.targetUserId, req.session.userId, req.body.content)
     .then((data) => {
       res.send(data);
     }).catch((err)=>{
@@ -53,6 +53,7 @@ router.get('/note/getNote', function (req, res, next) {
 });
 
 router.post('/note/updateNote', function (req, res, next) {
+  console.log(req.body.year, req.body.nthGroup, req.body.noteText)
   note
     .updateNote(req.body.year, req.body.nthGroup, req.body.noteText)
     .then((data) => {
@@ -62,11 +63,11 @@ router.post('/note/updateNote', function (req, res, next) {
     })
 });
 
-// ====================== Calender ======================
+// ====================== Calendar ======================
 
-router.get('/calender/getCalender', function (req, res, next) {
-  calender
-    .getCalender(req.query.year, req.query.nthGroup)
+router.get('/calendar/getCalendar', function (req, res, next) {
+  calendar
+    .getCalendar(req.query.year, req.query.nthGroup)
     .then((data) => {
       res.send(JSON.stringify(data));
     })
@@ -75,9 +76,9 @@ router.get('/calender/getCalender', function (req, res, next) {
     });
 });
 
-router.post('/calender/setCalender', function (req, res, next) {
-  calender
-    .setCalender(req.body.year, req.body.nthGroup, req.body.eventId, req.body.date, req.body.content)
+router.post('/calendar/setCalendar', function (req, res, next) {
+  calendar
+    .setCalendar(req.body.year, req.body.nthGroup, req.body.eventId, req.body.date, req.body.content)
     .then((data) => {
       res.send(data);
     })
@@ -99,7 +100,7 @@ router.get('/board/getBoard', function (req, res, next) {
     });
 });
 
-router.get('/board/updateSticker', function (req, res, next) {
+router.post('/board/updateSticker', function (req, res, next) {
   board
     .updateSticker(req.body.year, req.body.nthGroup, req.body.stickerId, req.body.userId, req.body.content)
     .then((data) => {
