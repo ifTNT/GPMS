@@ -48,9 +48,12 @@
                             <option value="/user_information">個人資訊</option>
                             <option value="/group_information">組別資訊</option>
                             <option value="/like">收藏</option>
-                            <option value="/note">記事本</option>
-                            <option value="/board">佈告欄</option>
-                            <option value="/calendar">行事曆</option>
+                            <% if(session.groups.length==1) { %>
+                            <% let {year,nthGroup} = session.groups[0] %>
+                            <option value="<%= `/note/${year}/${nthGroup}` %>">記事本</option>
+                            <option value="<%= `/board/${year}/${nthGroup}` %>">佈告欄</option>
+                            <option value="<%= `/calendar/${year}/${nthGroup}` %>">行事曆</option>
+                            <% } %>
                             <option value="/uis/logout">登出</option>
                         </select>
             <% } %>

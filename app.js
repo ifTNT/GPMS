@@ -48,6 +48,7 @@ app.use(function (req, res, next) {
   req.session.logined = setIfUndefined(req.session.logined, false);
   req.session.userId = setIfUndefined(req.session.userId, "");
   req.session.roll = setIfUndefined(req.session.roll, "guest");
+  req.session.groups = setIfUndefined(req.session.groups, []);
   // Calculate year
   let date = new Date();
   req.session.year = setIfUndefined(

@@ -132,12 +132,12 @@
 		<div class="project_photo">
 			<div class="project_picture">
 				<span id="year"><%=project.year%></span>學年度 第<span id="nthGroup"><%= project.nthGroup %></span>組 題目:<%= project.topic %>
-				<img src="" width="">
+				<img src="<%= project.avatar%>" >
 				
 			</div>
-			<div class="change_photo" id="change_project_picture">
+			<!-- <div class="change_photo" id="change_project_picture">
 				<img src="/images/camera.png">
-			</div>
+			</div> -->
 		</div>
 		
 		<div class="content">
@@ -156,11 +156,13 @@
 								<!-- <button type="button">更改</button> -->
 							</div>
 						</td>
+						<% if (session.roll==='leader' || session.roll==='teacher') { %>
 						<td>
 							<div class="change_photo" id="change_project_name" onclick="clickname()">
 								<img src="/images/pencil.png">
 							</div>
 						</td>
+						<% } %>
 					</tr>
 					<tr rowspan="3">
 						<td>
@@ -175,11 +177,13 @@
 								<!-- <button  type="button">更改</button> -->
 							</div>
 						</td>
+						<% if (session.roll==='leader' || session.roll==='teacher') { %>
 						<td>
 							<div class="change_photo" id="change_project_introduce" onclick="clickintroduce()">
 								<img src="/images/pencil.png">
 							</div>
 						</td>
+						<% } %>
 					</tr>
 					<tr>
 						<td>
@@ -194,11 +198,13 @@
 								<!-- <button  type="button">更改</button> -->
 							</div>
 						</td>
+						<% if (session.roll==='leader' || session.roll==='teacher') { %>
 						<td>
 							<div class="change_photo" id="change_project_tag" onclick="clicktag()">
 								<img src="/images/pencil.png">
 							</div>
 						</td>
+						<% } %>
 						
 					</tr>
 				</table>

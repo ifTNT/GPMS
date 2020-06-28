@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/login.css" />
   </head>
   <body>
+    <form id="loginForm">
     <table class="table">
       <tr>
         <td>帳號(學號)：</td>
@@ -18,11 +19,12 @@
       <tr>
         <td colspan="3" style="text-align: center;">
           <input type="hidden" name="action" value="login" />
-          <input id="submit" type="submit" value="登入" />
+          <input type="submit" value="登入" />
         </td>
       </tr>
     </table>
     <span class="result"></span>
+    </form>
   </body>
   <script>
     function submit(e) {
@@ -54,6 +56,6 @@
           }
         });
     }
-    document.querySelector("#submit").addEventListener("click", submit);
+    document.querySelector("#loginForm").addEventListener("submit", submit);
   </script>
 </html>
