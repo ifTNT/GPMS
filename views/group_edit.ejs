@@ -38,7 +38,7 @@
         <div class="item">
           <div class="item_icon">
             <% if(session.roll==='guest'){ %>
-            <a href="javascript:login()"> </a>
+            <a href="/login"> </a>
             <% }else if(session.roll==='admin'){ %>
             <select
               onchange="window.location.href=this.options[this.selectedIndex].value"

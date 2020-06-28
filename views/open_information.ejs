@@ -113,7 +113,7 @@
         <div class="item">
           <div class="item_icon">
               <% if(session.roll==='guest'){ %>
-            <a href="javascript:login()">
+            <a href="/login">
             </a>
             <% }else if(session.roll==='admin'){ %>
             <select
@@ -166,7 +166,7 @@
 		<div class="information">
 			<div class="left_part">
 				<div class="poster">
-					<img src=`<%= imgsrc %>` width="">
+					<img src='<%= imgsrc %>' width="">
 				</div>
 			</div>
 			<div class="right_part">
@@ -192,6 +192,7 @@
 			</div>
 		</div>
 		<div class="click_button">
+			<% if(session.roll !== 'guest') { %>
 			<div class="unlike">
 				<button id="unlike" type="button" onclick="clickunlike()">
 					<img src="/images/unlike.png">
@@ -212,12 +213,15 @@
 					<img src="/images/unvote.png">
 				</button>
 			</div>
+			<% } %>
+			<% if(enable_ics) { %>
 			<div class="teacher_button">
-				<input type="button" onclick="javascript:location.href='/note'" value="記事本"></input>
-				<input type="button" onclick="javascript:location.href='/calendar'" value="行事曆"></input>
-				<input type="button" onclick="javascript:location.href='/board'" value="公告欄"></input>
+				<input type="button" onclick="javascript:location.href='<%= `/note/${year}/${nthGroup}` %>'" value="記事本"></input>
+				<input type="button" onclick="javascript:location.href='<%= `/calendar/${year}/${nthGroup}` %>'" value="行事曆"></input>
+				<input type="button" onclick="javascript:location.href='<%= `/board/${year}/${nthGroup}` %>'" value="公告欄"></input>
 				<input type="button" onclick="javascript:location.href='/group_information'" value="組別資訊"></input>
 			</div>
+			<% } %>
 		</div>
 	</div>
 	<div class="message">
@@ -243,6 +247,7 @@
 				let params = new URLSearchParams(url.search);
 				let year = params.get('year') // 'chrome-instant'
 				let nthGroup = params.get('nthGroup') // 'mdn query string'
+				console.log(year, nthGroup);
 				return fetch('/fs/note/updateNote', {
 						method: 'POST', // *GET, POST, PUT, DELETE, etc.
 						body: JSON.stringify({
