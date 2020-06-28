@@ -42,39 +42,45 @@ router.get("/project/:year/:nthGroup", async function (req, res, next) {
       message: "Invalid argument",
     });
   } else {
-    let year = parseInt(req.params.year);
-    let nthGroup = parseInt(req.params.nthGroup);
-    if (isNaN(year) || isNaN(nthGroup)) {
-      res.send("error");
-      return;
-    }
-    let project = await projectInformation.getProject(year, nthGroup);
-    let enable_ics = false;
-    if (req.session.logined === true) {
-      let userInfo = await userInformation.getProfile(req.session.userId);
-      for (let group of userInfo.groups) {
-        if (
-          group.year === project.year &&
-          group.nthGroup === project.nthGroup
-        ) {
-          enable_ics = true;
-          break;
+    try {
+      let year = parseInt(req.params.year);
+      let nthGroup = parseInt(req.params.nthGroup);
+      if (isNaN(year) || isNaN(nthGroup)) {
+        res.send("error");
+        return;
+      }
+      let project = await projectInformation.getProject(year, nthGroup);
+      let enable_ics = false;
+      if (req.session.logined === true) {
+        let userInfo = await userInformation.getProfile(req.session.userId);
+        for (let group of userInfo.groups) {
+          if (
+            group.year === project.year &&
+            group.nthGroup === project.nthGroup
+          ) {
+            enable_ics = true;
+            break;
+          }
         }
       }
+      let liked = await projectInformation.isCollected(req, year, nthGroup);
+      res.render("open_information", {
+        imgsrc: project.img,
+        title: project.topic,
+        teacherName: project.teacher,
+        leaderName: project.leader,
+        members: project.members,
+        description: project.description,
+        chat: project.comment,
+        session: req.session,
+        year,
+        nthGroup,
+        enable_ics,
+        liked,
+      });
+    } catch (err) {
+      res.redirect("/");
     }
-    res.render("open_information", {
-      imgsrc: project.img,
-      title: project.topic,
-      teacherName: project.teacher,
-      leaderName: project.leader,
-      members: project.members,
-      description: project.description,
-      chat: project.comment,
-      session: req.session,
-      year,
-      nthGroup,
-      enable_ics,
-    });
   }
 });
 
@@ -196,6 +202,16 @@ router.get("/statistics/:year", function (req, res, next) {
       .catch((err) => {
         next(err);
       });
+  }
+});
+
+router.get("/like", async function (req, res, next) {
+  if (req.session.logined === true) {
+    let userInfo = await userInformation.getProfile(req.session.userId);
+    let collection = userInfo.collections;
+    res.render("like", { session: req.session, collection });
+  } else {
+    res.redirect("/");
   }
 });
 

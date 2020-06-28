@@ -77,12 +77,8 @@
 			justify-content: center;
 		}
 
-		#like {
+		.hide {
 			display: none;
-		}
-
-		#unlike {
-			display: block;
 		}
 
 		#vote {
@@ -193,13 +189,13 @@
 		</div>
 		<div class="click_button">
 			<% if(session.roll !== 'guest') { %>
-			<div class="unlike">
-				<button id="unlike" type="button" onclick="clickunlike()">
+			<div class="unlike" >
+				<button id="unlike" class="<%= liked ? 'hide' : ''%>" type="button" onclick="togglelike()">
 					<img src="/images/unlike.png">
 				</button>
 			</div>
 			<div class="like">
-				<button id="like" type="button" onclick="clicklike()">
+				<button id="like" class="<%= !liked ? 'hide' : ''%>" type="button" onclick="togglelike()">
 					<img src="/images/like.png">
 				</button>
 			</div>
@@ -269,6 +265,22 @@
 			}
 		}
 		document.querySelector(".send_message button").addEventListener('click', sendComment, false);
+	
+		function togglelike(){
+			let like = document.getElementById("like");
+			let unlike = document.getElementById("unlike");
+			//alert("hello world");
+			let url = "/epis/proj/<%= year %>/<%= nthGroup %>/toggle_collect";
+	    fetch(url, {
+	      method: "GET",
+	    })
+	      .then((res) => res.json())
+	      .catch((error) => console.error("Error:", error))
+	      .then((res) => {
+					unlike.classList.toggle('hide');
+					like.classList.toggle('hide');
+	      });
+		}
 	</script>
 </body>
 
