@@ -49,14 +49,16 @@ router.get("/exhib/:year", function (req, res, next) {
 router.get("/exhib/:year/freeze", function (req, res, next) {
   if (req.params.year === undefined) {
     next({ message: "Invalid argument" });
-  } else {
+  } else if(req.session.roll==='admin'){
     let year = parseInt(req.params.year);
     exhibitionInformation
       .freezeExhibition(year)
       .then((data) => {
-        res.json(data);
+        res.json({ok:data});
       })
       .catch((err) => next(err));
+  }else{
+    res.json({ok: false});
   }
 });
 

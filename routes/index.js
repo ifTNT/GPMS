@@ -8,6 +8,7 @@ var board = require("./ICS/board");
 // var calender = require('./ICS/calendar');
 var note = require("./ICS/note");
 var statisticsAnalysis = require("./MS/statisticsAnalysis");
+const session = require("express-session");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
@@ -215,4 +216,25 @@ router.get("/like", async function (req, res, next) {
   }
 });
 
+router.get("/exhi_info", async function (req, res, next) {
+  if (req.session.roll !== "admin") {
+    res.redirect("/");
+  } else {
+    let year = req.session.year;
+    if (req.query.year !== undefined) {
+      year = parseInt(req.query.year);
+      req.session.year = year;
+    }
+    let exhibitions = await exhibitionInformation.getExhibitions();
+    let currentExhibition = await exhibitionInformation.getExhibition(year);
+    await req.session.save();
+    console.log(req.session);
+    res.render("exhi_info", {
+      exhibitions,
+      currentExhibition,
+      session: req.session,
+      dateFormat,
+    });
+  }
+});
 module.exports = router;
