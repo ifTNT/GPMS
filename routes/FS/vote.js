@@ -42,7 +42,7 @@ function toggleVote(year, nthGroup, userId) {
     return new Promise((resolve, reject) => {
         isVoted(year, nthGroup, userId).then((data) => {
             if (data == true) {
-                db.Vote.remove({
+                db.Vote.deleteOne({
                     year: year,
                     nthGroup: nthGroup,
                     userId: userId

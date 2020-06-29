@@ -1,6 +1,7 @@
 var express = require("express");
 const grade = require("./grade");
-const comment = require("./comment")
+const comment = require("./comment");
+const vote = require("./vote");
 var router = express.Router();
 
 // ===================== Grade ========================
@@ -67,6 +68,7 @@ router.get('/vote/toggleVote', function (req, res, next) {
   vote
     .toggleVote(req.query.year, req.query.nthGroup, req.session.userId)
     .then((data) => {
+      console.log(data);
       res.send(data);
     }).catch((err) => {
       next(err);

@@ -26,13 +26,5 @@
 		unlike.classList.toggle('hide');
 		like.classList.toggle('hide');
 	}
-	function clickvote(){
-		//alert("hello world");
-		unvote.style.display = 'block';
-		vote.style.display = 'none';
-	}
-	function clickunvote(){
-		//alert("hello world");
-		vote.style.display = 'block';
-		unvote.style.display = 'none';
-	}
+	
+

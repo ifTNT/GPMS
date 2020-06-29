@@ -8,6 +8,7 @@ var board = require("./ICS/board");
 // var calender = require('./ICS/calendar');
 var note = require("./ICS/note");
 var statisticsAnalysis = require("./MS/statisticsAnalysis");
+const vote = require("./FS/vote");
 const session = require("express-session");
 
 /* GET home page. */
@@ -67,6 +68,10 @@ router.get("/project/:year/:nthGroup", async function (req, res, next) {
       if (req.session.logined === true) {
         liked = await projectInformation.isCollected(req, year, nthGroup);
       }
+      let voted = false;
+      if (req.session.logined === true) {
+        voted = await vote.isVoted(year, nthGroup, req.session.userId);
+      }
       res.render("open_information", {
         imgsrc: project.img,
         title: project.topic,
@@ -76,10 +81,11 @@ router.get("/project/:year/:nthGroup", async function (req, res, next) {
         description: project.description,
         chat: project.comment,
         session: req.session,
-        year,
-        nthGroup,
+        current_year: year,
+        current_nthGroup: nthGroup,
         enable_ics,
         liked,
+        voted
       });
     } catch (err) {
       res.redirect("/");

@@ -32,10 +32,8 @@
             <select
               onchange="window.location.href=this.options[this.selectedIndex].value" onfocus="this.selectedIndex = -1;"
             >
-              <option value="/notice">通知</option>
               <option value="/exhi_info">展覽資訊</option>
               <option value="/statistic">統計分析</option>
-              <option value="/account_manage">帳號管理</option>
               <option value="/uis/logout">登出</option>
             </select>
             <% }else if(session.roll==='teacher'){ %>
@@ -94,7 +92,7 @@
                 <% for(var i=0; i<results.length; i++) { %>
                 <div class="C_tr">
                     <div class="C_td">第<%= results[i].nthGroup %>組</div>
-                    <div class="C_td"><%= results[i].rank %></div>
+                    <div class="C_td"><%= results[i].rank + 1 %></div>
                 </div>
                 <% } %>
             </div>
