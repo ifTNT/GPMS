@@ -18,6 +18,7 @@ function getBoard(year = 0, nthGroup = 0) {
 
 function updateSticker(year, nthGroup, stickerId, userId, content) {
     return new Promise((resolve, reject) => {
+        console.log(year, nthGroup, stickerId, userId, content)
         db.Project.findOne({
             year: year,
             nthGroup: nthGroup,
