@@ -63,7 +63,10 @@ router.get("/project/:year/:nthGroup", async function (req, res, next) {
           }
         }
       }
-      let liked = await projectInformation.isCollected(req, year, nthGroup);
+      let liked = false;
+      if (req.session.logined === true) {
+        liked = await projectInformation.isCollected(req, year, nthGroup);
+      }
       res.render("open_information", {
         imgsrc: project.img,
         title: project.topic,

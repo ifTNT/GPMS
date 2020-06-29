@@ -20,8 +20,10 @@ li {
     margin-top: 20px;
 }
 .button{
-    margin-left: 565px;
-    margin-top: 20px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
 }
 button{
     
@@ -29,7 +31,6 @@ button{
     height: 50px;
     font-size: 20px;
     border-radius: 10px;
-    margin-left: 50px;
 }
 .button a{
     text-decoration: none;

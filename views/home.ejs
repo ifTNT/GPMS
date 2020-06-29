@@ -21,7 +21,6 @@
             <select
               onchange="window.location.href=this.options[this.selectedIndex].value" onfocus="this.selectedIndex = -1;"
             >
-              <option value="/edit_group_info">組別資訊</option>
               <option value="/notice">通知</option>
               <option value="/exhi_info">展覽資訊</option>
               <option value="/statistic">統計分析</option>
@@ -109,15 +108,13 @@
       <% projects.forEach(proj=>{ %>
       <div class="boxes">
         <a href=<%= `/project/${session.year}/${proj.nthGroup}`%>>
-          <div class="box">
             <img src="/images/project.jpg" />
-            <h1>第<%= proj.nthGroup %>組: <%= proj.topic %></h1>
+            <h1>第<%= proj.nthGroup %>組: <br><%= proj.topic %></h1>
             <div class="wrap">
               <% proj.tag.forEach(tag=>{ %>
               <p>#<%= tag %></p>
               <% }); %>
             </div>
-          </div>
         </a>
       </div>
       <% }); %>
