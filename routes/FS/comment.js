@@ -25,9 +25,6 @@ function addComment(year, nthGroup, content, userId) {
       if (err) {
         reject(err);
       } else {
-        console.log(data)
-        console.log(data.comment)
-        userId = "admin"
         data.comment.push({
           name: userId == "guest" ? "訪客" : userId, // 該留言的作者名稱, string
           content: content
