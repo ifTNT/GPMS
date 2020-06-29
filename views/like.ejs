@@ -61,6 +61,14 @@
       <nav>
         <div class="item">
           <div class="item_icon">
+            <%
+            let year = 108;
+            let nthGroup = 1;
+            if(session.groups.length >= 1){ 
+              year = session.groups[0].year;
+              nthGroup = session.groups[0].nthGroup;
+            }
+            %>
               <% if(session.roll==='guest'){ %>
             <a href="/login">
             </a>
