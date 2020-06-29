@@ -57,13 +57,15 @@
 }
 .menu {
   background-color: rgba(51, 51, 51, 0.808);
-  overflow: auto;
+  /* overflow: auto; */
   white-space: nowrap;
   margin-top: 20px;
   margin-bottom: -50px;
-  width: 30%;
+  width: 40em;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: space-around;
 }
 .menu a {
   display: inline-block;

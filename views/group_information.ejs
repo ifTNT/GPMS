@@ -42,7 +42,6 @@
 			}
 			.teacher_information{
 				display:flex;
-				width:50px;
 				align-items:center;
 			}
 			.leader_information{
@@ -62,6 +61,7 @@
 				margin:50px auto;
 				justify-content: center;
 				align-items: flex-end;
+				font-size: 25px;
 			}
 			.change_photo img{
 				height: 30px;
@@ -74,9 +74,10 @@
 				text-align:left;
 			}
 			td {
-				width:30%;
+				width:5em;
 				vertical-align: bottom;
 				padding:10px;
+				line-height: 1.5em;
 			}
 			#changing_name{
 				display:none;
@@ -156,11 +157,7 @@
       </nav>
 		</header>
 		<div class="project_photo">
-			<div class="project_picture">
-				<span id="year"><%=project.year%></span>學年度 第<span id="nthGroup"><%= project.nthGroup %></span>組 題目:<%= project.topic %>
-				<img src="<%= project.avatar%>" >
-				
-			</div>
+				<span id="year"><%=project.year%></span>學年度 第<span id="nthGroup"><%= project.nthGroup %></span>組 題目:<%= project.topic %>		
 			<!-- <div class="change_photo" id="change_project_picture">
 				<img src="/images/camera.png">
 			</div> -->
