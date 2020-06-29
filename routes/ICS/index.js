@@ -55,7 +55,7 @@ router.get('/note/getNote', function (req, res, next) {
 router.post('/note/updateNote', function (req, res, next) {
   console.log(req.body.year, req.body.nthGroup, req.body.noteText)
   note
-    .updateNote(req.body.year, req.body.nthGroup, req.body.noteText)
+    .updateNote(parseInt(req.body.year), parseInt(req.body.nthGroup), req.body.noteText)
     .then((data) => {
       res.send(data);
     }).catch((err)=>{
