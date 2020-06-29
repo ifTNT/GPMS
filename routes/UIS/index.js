@@ -41,12 +41,12 @@ router.get("/set/:id", function (req, res, next) {
 
 router.post("/login", function (req, res, next) {
   if (!("userId" in req.body) || !("password" in req.body)) {
-    res.send("{'msg':'Invalid Arguments'}");
+    res.json({'msg':'Invalid Arguments'});
   } else {
     login
       .login(req, req.body.userId, req.body.password)
       .then(() => {
-        res.json({ msg: "Login successful" });
+        res.json({ ok: true, message: "Login successful" });
       })
       .catch((err) => {
         res.json(err);
@@ -56,7 +56,7 @@ router.post("/login", function (req, res, next) {
 
 router.get("/logout", function (req, res, netx) {
   login.logout(req).then(() => {
-    res.json({ msg: "Logout successful" });
+    res.redirect("/");
   });
 });
 

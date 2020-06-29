@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<link rel=stylesheet type="text/css" href="reset.css">
+		<link rel=stylesheet type="text/css" href="/stylesheets/reset.css">
 		<style>
 
 
@@ -122,22 +122,22 @@
 	</head>
 	<body>
 		<header>
-			<div class="web_title"><a href="home.html"><img src="title.png"></a></div>
+			<div class="web_title"><a href="/"><img src="/images/title.png"></a></div>
 			<nav>
                 <div class="item">
-                    <div class="item__icon"><img src="login.png"></div>
+                    <div class="item__icon"><img src="/images/login.png"></div>
                 </div>
             </nav>
 		</header>
 		<div class="project_photo">
 			<div class="project_picture">
-				第X組 題目:XXX
-				<img src="" width="">
+				<span id="year"><%=project.year%></span>學年度 第<span id="nthGroup"><%= project.nthGroup %></span>組 題目:<%= project.topic %>
+				<img src="<%= project.avatar%>" >
 				
 			</div>
-			<div class="change_photo" id="change_project_picture">
-				<img src="camera.png">
-			</div>
+			<!-- <div class="change_photo" id="change_project_picture">
+				<img src="/images/camera.png">
+			</div> -->
 		</div>
 		
 		<div class="content">
@@ -148,51 +148,63 @@
 							<font>專題名稱:</font>
 						</td>
 						<td colspan="4" style="border-bottom:3px black solid;">
-							<div class="project_name">  </div>
+							<div class="project_name">
+								<%= project.topic %>
+							</div>
 							<div id="changing_name">
-								<textarea  rows="1" name="project_name" cols="30"></textarea>
-								<button type="button">更改</button>
+								<textarea  rows="1" name="project_name" cols="30"><%= project.topic %></textarea>
+								<!-- <button type="button">更改</button> -->
 							</div>
 						</td>
+						<% if (session.roll==='leader' || session.roll==='teacher') { %>
 						<td>
 							<div class="change_photo" id="change_project_name" onclick="clickname()">
-								<img src="pencil.png">
+								<img src="/images/pencil.png">
 							</div>
 						</td>
+						<% } %>
 					</tr>
 					<tr rowspan="3">
 						<td>
 							<font>專題介紹:</font>
 						</td>
 						<td colspan="4" style="border-bottom:3px black solid;">
-							<div class="project_introduce">	</div>
+							<div class="project_introduce">
+								<%= project.description %>
+							</div>
 							<div id="changing_introduce">
-								<textarea rows="1" name="project_introduce" cols="30"></textarea>
-								<button  type="button">更改</button>
+								<textarea rows="1" name="project_introduce" cols="30"><%= project.description %></textarea>
+								<!-- <button  type="button">更改</button> -->
 							</div>
 						</td>
+						<% if (session.roll==='leader' || session.roll==='teacher') { %>
 						<td>
 							<div class="change_photo" id="change_project_introduce" onclick="clickintroduce()">
-								<img src="pencil.png">
+								<img src="/images/pencil.png">
 							</div>
 						</td>
+						<% } %>
 					</tr>
 					<tr>
 						<td>
 							<font>標籤:</font>
 						</td>
 						<td colspan="4" style="border-bottom:3px black solid;">
-							<div class="project_tag">	</div>
+							<div class="project_tag">
+              	<%= `#${project.tag.join(' #')}` %>
+							</div>
 							<div id="changing_tag">
-								<textarea  rows="1" name="project_introduce" cols="30"></textarea>
-								<button  type="button">更改</button>
+								<textarea  rows="1" name="project_tag" cols="30"><%= `${project.tag.join(' #')}` %></textarea>
+								<!-- <button  type="button">更改</button> -->
 							</div>
 						</td>
+						<% if (session.roll==='leader' || session.roll==='teacher') { %>
 						<td>
 							<div class="change_photo" id="change_project_tag" onclick="clicktag()">
-								<img src="pencil.png">
+								<img src="/images/pencil.png">
 							</div>
 						</td>
+						<% } %>
 						
 					</tr>
 				</table>
@@ -201,9 +213,9 @@
 				<div class="teacher">
 					<font>指導老師:</font>
 					<div class="teacher_information">
-						<div class="user_photo"><img src="user.png"></div>
+						<div class="user_photo"><img src="/images/user.png"></div>
 						<div class="teacher_name">
-							<a href="user_information.html"><font>User3</font></a>
+							<a href="<%= `/user_information?user=${project.teacher}`%>"><font><%=project.teacher%></font></a>
 						</div>
 					</div>
 					
@@ -211,25 +223,27 @@
 				<div class="leader">
 					<font>組長:</font>
 					<div class="leader_information">
-						<div class="user_photo"><img src="user.png"></div>
+						<div class="user_photo"><img src="/images/user.png"></div>
 						<div class="leader_name">
-							<a href="user_information.html"><font>User1</font></a>
+							<a href="<%= `/user_information?user=${project.leader}`%>"><font><%=project.leader%></font></a>
 						</div>
 					</div>
 				</div>
+				<% project.members.forEach(member=>{ %>
 				<div class="team_member">
 					<font>組員:</font>
 					<div class="team_member_information">
-						<div class="user_photo"><img src="user.png"></div>
+						<div class="user_photo"><img src="/images/user.png"></div>
 					
 						<div class="team_member_name">
-							<a href="user_information.html"><font>User2</font></a>
+							<a href="<%= `/user_information?user=${member}`%>"><font><%=member%></font></a>
 						</div>
 					</div>
 				</div>
+				<% }); %>
 			</div>
 		</div>
-		<script src="group_information.js">
+		<script src="/javascripts/group_information.js">
 			
 		</script>
 	</body>

@@ -45,18 +45,34 @@ router.get("/exhib/:year", function (req, res, next) {
   }
 });
 
-// Freeze an exhibition
-router.get("/exhib/:year/freeze", function (req, res, next) {
+router.post("/exhib/:year", function (req, res, next) {
   if (req.params.year === undefined) {
     next({ message: "Invalid argument" });
   } else {
     let year = parseInt(req.params.year);
     exhibitionInformation
-      .freezeExhibition(year)
+      .setExhibition(year, req.body)
       .then((data) => {
         res.json(data);
       })
       .catch((err) => next(err));
+  }
+});
+
+// Freeze an exhibition
+router.get("/exhib/:year/freeze", function (req, res, next) {
+  if (req.params.year === undefined) {
+    next({ message: "Invalid argument" });
+  } else if(req.session.roll==='admin'){
+    let year = parseInt(req.params.year);
+    exhibitionInformation
+      .freezeExhibition(year)
+      .then((data) => {
+        res.json({ok:data});
+      })
+      .catch((err) => next(err));
+  }else{
+    res.json({ok: false});
   }
 });
 
@@ -117,6 +133,21 @@ router.get("/proj/:year/:nthGroup", function (req, res, next) {
     let nthGroup = parseInt(req.params.nthGroup);
     projectInformation
       .getProject(year, nthGroup)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => next(err));
+  }
+});
+
+router.post("/proj/:year/:nthGroup", function (req, res, next) {
+  if (req.params.year === undefined || req.params.nthGroup === undefined) {
+    next({ message: "Invalid argument" });
+  } else {
+    let year = parseInt(req.params.year);
+    let nthGroup = parseInt(req.params.nthGroup);
+    projectInformation
+      .setPorject(req, year, nthGroup, req.body)
       .then((data) => {
         res.json(data);
       })

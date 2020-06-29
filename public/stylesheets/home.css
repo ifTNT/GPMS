@@ -1,65 +1,3 @@
-header {
-  display: flex;
-  justify-content: space-between;
-  background-color: #d3d3d3;
-  height: 100px;
-}
-.logo {
-  height: 20px;
-  width: 100px;
-  align-self: flex-end;
-  /*margin-top: 10px;*/
-}
-.logo img {
-  height: 150px;
-  width: 400px;
-  margin-top: -95px;
-}
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /*margin-top: 70px;*/
-}
-.item img {
-  width: 40px;
-  margin-right: 10px;
-  margin-top: -15px;
-}
-.item_icon {
-  position: relative;
-  display: inline-block;
-  width: 90px;
-  color: rgb(0, 0, 0);
-}
-.item_icon a {
-  position: absolute;
-  display: block;
-  width: 90px;
-  line-height: 25px;
-  text-indent: 10px;
-}
-
-.item_icon select {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 90px;
-  opacity: 0;
-}
-.item_icon select option {
-  text-indent: 10px;
-}
-.item_icon select option:hover {
-  background-color: rgba(102, 96, 88, 0.37);
-  color: #fff;
-}
-
 .sidebar_left {
   /*background-color:white;
     color: black;*/
@@ -170,6 +108,7 @@ nav {
 
 .info_block h2 {
   font-size: 1.2em;
+  line-height: 1.8em
 }
 .content {
   margin-left: auto;

@@ -1,5 +1,6 @@
 function login() {
-  window.open(
+  window.location.href = "/login";
+  /*window.open(
     "login",
     "登入",
     "height=50",
@@ -12,7 +13,7 @@ function login() {
     "resizable=no",
     "location=no",
     "status=no"
-  );
+  );*/
 }
 function logout() {
   var x = document.getElementById("logout");

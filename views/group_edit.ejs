@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css" />
+    <style>
+      .content {
+        width: 100%;
+        height: 800px;
+      }
+      table {
+        margin: 50px auto;
+        width: 400px;
+        padding: 50px;
+        text-align: left;
+      }
+      td {
+        vertical-align: top;
+        margin: 50px;
+        padding: 25px;
+      }
+      .button {
+        width: 40%;
+        display: flex;
+        margin: 50px auto;
+        justify-content: space-around;
+      }
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/"><img src="/images/title.png" /></a>
+      </div>
+      <nav>
+        <div class="item">
+          <div class="item_icon">
+            <% if(session.roll==='guest'){ %>
+            <a href="/login"> </a>
+            <% }else if(session.roll==='admin'){ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+            >
+              <option value="/edit_group_info">組別資訊</option>
+              <option value="/notice">通知</option>
+              <option value="/exhi_info">展覽資訊</option>
+              <option value="/statistic">統計分析</option>
+              <option value="/account_manage">帳號管理</option>
+              <option value="/uis/logout" selected>登出</option>
+            </select>
+            <% }else if(session.roll==='teacher'){ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+            >
+              <option value="/user_information">個人資訊</option>
+              <option value="/grade">指導組別</option>
+              <option value="/group_edit">組別資訊</option>
+              <option value="/like">收藏</option>
+              <option value="/note">記事本</option>
+              <option value="/board">佈告欄</option>
+              <option value="/calendar">行事曆</option>
+              <option value="/uis/logout" selected>登出</option>
+            </select>
+            <% }else{ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+            >
+              <option value="/user_information">個人資訊</option>
+              <option value="/group_edit">組別資訊</option>
+              <option value="/like">收藏</option>
+              <option value="/note">記事本</option>
+              <option value="/board">佈告欄</option>
+              <option value="/calendar">行事曆</option>
+              <option value="/uis/logout" selected>登出</option>
+            </select>
+            <% } %>
+          </div>
+          <% if(session.roll==='guest'){ %>
+          <p>訪客</p>
+          <% }else{ %>
+          <p><%=session.userId%></p>
+          <% } %> %>
+        </div>
+      </nav>
+    </header>
+    <div class="group_number">
+      <%=project.year %>學年度 第<%=project.nthGroup %>組
+    </div>
+    <div class="content">
+      <table>
+        <tr>
+          <td>專題名稱:</td>
+          <td>
+            <input
+              type="text"
+              name="project_name"
+              value="<%=project.topic %>"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>專題簡介:</td>
+          <td>
+            <textarea rows="4" name="project_introduce" cols="20"><%= project.description %></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>標籤:</td>
+          <td>
+            <input
+              type="text"
+              name="project_tag"
+              value="<%=
+            `#${project.tag.join(' #')}` %>"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>指導老師:</td>
+          <td>
+            <input
+              type="text"
+              name="project_teacher"
+              value="<%= project.teacher %>"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>組員:</td>
+          <td>
+            <input
+              type="text"
+              name="project_member"
+              value="<%= project.members.join(' ') %>"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>組長:</td>
+          <td><input type="text" name="project_leader" value='<%= project.leader%>' /></td>
+        </tr>
+      </table>
+      <div class="button">
+        <button type="button">確定更改</button>
+        <button type="button">取消</button>
+      </div>
+    </div>
+    <footer></footer>
+  </body>
+</html>

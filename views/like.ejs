@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css" />
+    <style>
+      .likePage {
+        margin: 25px auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 1100px;
+        flex-direction: column;
+        align-items: center;
+      }
+      .project {
+        margin: 20px auto;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      .btn {
+        /* padding-top:0px;
+                padding-left:0px; */
+        padding: 0px;
+        margin: 15px;
+        width: 515px;
+        box-sizing: border-box;
+        border: none;
+      }
+      .btn:hover{
+          background-color: #EEE;
+      }
+      .hashtags {
+        display: flex;
+        justify-content: space-around;
+      }
+      .hashtags p {
+        background-color: navajowhite;
+        /* width: 60px; */
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .tip{
+          font-size: 20px;
+          line-height: 2em;
+      }
+      font{
+          display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/"><img src="/images/title.png" /></a>
+      </div>
+      <nav>
+        <div class="item">
+          <div class="item_icon">
+            <% if(session.roll==='guest'){ %>
+            <a href="/login"> </a>
+            <% }else if(session.roll==='admin'){ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+              onfocus="this.selectedIndex = -1;"
+            >
+              <option value="/edit_group_info">組別資訊</option>
+              <option value="/notice">通知</option>
+              <option value="/exhi_info">展覽資訊</option>
+              <option value="/statistic">統計分析</option>
+              <option value="/account_manage">帳號管理</option>
+              <option value="/uis/logout">登出</option>
+            </select>
+            <% }else if(session.roll==='teacher'){ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+              onfocus="this.selectedIndex = -1;"
+            >
+              <option value="/user_information">個人資訊</option>
+              <option value="/grade">指導組別</option>
+              <option value="/group_information">組別資訊</option>
+              <option value="/like">收藏</option>
+              <option value="/note">記事本</option>
+              <option value="/board">佈告欄</option>
+              <option value="/calendar">行事曆</option>
+              <option value="/uis/logout">登出</option>
+            </select>
+            <% }else{ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+              onfocus="this.selectedIndex = -1;"
+            >
+              <option value="/user_information">個人資訊</option>
+              <option value="/group_information">組別資訊</option>
+              <option value="/like">收藏</option>
+              <% if(session.groups.length==1) { %> <% let {year,nthGroup} =
+              session.groups[0] %>
+              <option value="<%= `/note/${year}/${nthGroup}` %>">記事本</option>
+              <option value="<%= `/board/${year}/${nthGroup}` %>"
+                >佈告欄</option
+              >
+              <option value="<%= `/calendar/${year}/${nthGroup}` %>"
+                >行事曆</option
+              >
+              <% } %>
+              <option value="/uis/logout">登出</option>
+            </select>
+            <% } %>
+          </div>
+          <% if(session.roll==='guest'){ %>
+          <p>訪客</p>
+          <% }else{ %>
+          <p><%=session.userId%></p>
+          <% } %> %>
+        </div>
+      </nav>
+    </header>
+    <div class="likePage">
+      <img src="/images/heart.png" width="80" height="80" />
+      <div class="project">
+          <% collection.forEach(project=>{ %>
+        <button class="btn">
+          <img src="/images/project.jpg" style="width: 100%; height: auto;" />
+          <font size="6"><%= `${project.year}學年度第${project.nthGroup}組：${project.topic}` %></font><br /><br />
+          <font size="5">
+            <div class="hashtags">
+              <% project.tag.forEach(tag=>{ %>
+              <p style="font-size: 5;">#<%= tag %></p>
+              <% }); %>
+            </div>
+            <br />
+          </font>
+        </button>
+        <% }) %>
+        <% if(collection.length===0){ %>
+            <p class="tip">您還沒有任何收藏哦</p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

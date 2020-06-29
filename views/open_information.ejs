@@ -3,224 +3,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<!-- <link rel="stylesheet" href="/stylesheets/reset.css"> -->
+	<link rel="stylesheet" href="/stylesheets/reset.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/header.css" />
 	<style>
-		html,
-		body,
-		div,
-		span,
-		applet,
-		object,
-		iframe,
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6,
-		p,
-		blockquote,
-		pre,
-		a,
-		abbr,
-		acronym,
-		address,
-		big,
-		cite,
-		code,
-		del,
-		dfn,
-		em,
-		img,
-		ins,
-		kbd,
-		q,
-		s,
-		samp,
-		small,
-		strike,
-		strong,
-		sub,
-		sup,
-		tt,
-		var,
-		b,
-		u,
-		i,
-		center,
-		dl,
-		dt,
-		dd,
-		ol,
-		ul,
-		li,
-		fieldset,
-		form,
-		label,
-		legend,
-		table,
-		caption,
-		tbody,
-		tfoot,
-		thead,
-		tr,
-		th,
-		td,
-		article,
-		aside,
-		canvas,
-		details,
-		embed,
-		figure,
-		figcaption,
-		footer,
-		header,
-		hgroup,
-		menu,
-		nav,
-		output,
-		ruby,
-		section,
-		summary,
-		time,
-		mark,
-		audio,
-		video {
-			margin: 0;
-			padding: 0;
-			border: 0;
-			font-size: 100%;
-			font: inherit;
-			vertical-align: baseline;
-		}
-
-		article,
-		aside,
-		details,
-		figcaption,
-		figure,
-		footer,
-		header,
-		hgroup,
-		menu,
-		nav,
-		section {
-			display: block;
-		}
-
-		body {
-			line-height: 1;
-		}
-
-		ol,
-		ul {
-			list-style: none;
-		}
-
-		blockquote,
-		q {
-			quotes: none;
-		}
-
-		blockquote:before,
-		blockquote:after,
-		q:before,
-		q:after {
-			content: '';
-			content: none;
-		}
-
-		table {
-			border-collapse: collapse;
-			border-spacing: 0;
-		}
-
-
-		header {
-			display: flex;
-			justify-content: space-between;
-			background-color: #D3D3D3;
-			height: 100px;
-		}
-
-		.logo {
-			height: 20px;
-			width: 100px;
-			align-self: flex-end;
-			/*margin-top: 10px;*/
-		}
-
-		.logo img {
-			height: 150px;
-			width: 400px;
-			margin-top: -95px;
-		}
-
-		nav {
-			display: flex;
-		}
-
-		.item {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			margin-top: 70px;
-		}
-
-		.item img {
-			width: 40px;
-			height: 40px;
-			margin-right: 10px;
-			margin-top: -15px;
-		}
-
-		.item_icon {
-			position: relative;
-			display: inline-block;
-			width: 90px;
-			height: 25px;
-			color: rgb(0, 0, 0);
-		}
-
-		.item_icon a {
-			position: absolute;
-			display: block;
-			width: 90px;
-			height: 25px;
-			line-height: 25px;
-			text-indent: 10px;
-		}
-
-		.item_icon select {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 90px;
-			height: 25px;
-			opacity: 0;
-		}
-
-		.item_icon select option {
-			text-indent: 10px;
-		}
-
-		.item_icon select option:hover {
-			background-color: rgba(102, 96, 88, 0.37);
-			color: #fff;
-		}
-
-		.web_title {
-			height: 20px;
-			width: 100px;
-			align-self: flex-end;
-			/*margin-top: 10px;*/
-		}
-
-		.web_title img {
-			height: 150px;
-			margin-top: -95px;
-		}
-
 		font {
 			size: 10px;
 		}
@@ -291,12 +76,8 @@
 			justify-content: center;
 		}
 
-		#like {
+		.hide {
 			display: none;
-		}
-
-		#unlike {
-			display: block;
 		}
 
 		#vote {
@@ -320,49 +101,61 @@
 
 <body style="overflow-x: hidden;">
 	<header>
-		<div class="logo"> <a href="/"><img src="/images/title.png"></a> </div>
-		<div class="item">
-			<div class="item_icon">
-				<a href="javascript:login()">
-					<img src="/images/login.png">
-				</a>
-				<select onchange="window.open(this.options[this.selectedIndex].value)">
-					<option value="edit_group_info.html">組別資訊</option>
-					<option value="notice.html">通知</option>
-					<option value="exhi_info.html">展覽資訊</option>
-					<option value="statistic.html">統計分析</option>
-					<option value="account_manage.html">帳號管理</option>
-					<option value="home.html">登出</option>
-				</select>
-
-				<!--老師<select>
-                            <option value="user_information.html">個人資訊</option>
-                            <option value="grade.html">指導組別</option>
-                            <option value="group_edit.html">組別資訊</option>
-                            <option value="like.html">收藏</option>
-                            <option value="note.html">記事本</option>
-                            <option value="board.html">佈告欄</option>
-                            <option value="calendar.html">行事曆</option>
-                            <option>登出</option>
-                        </select>-->
-				<!--組長組員<select>
-                            <option value="user_information.html">個人資訊</option>
-                            <option value="group_edit.html">組別資訊</option>
-                            <option value="like.html">收藏</option>
-                            <option value="note.html">記事本</option>
-                            <option value="board.html">佈告欄</option>
-                            <option value="calendar.html">行事曆</option>
-                            <option>登出</option>
-                        </select>-->
-			</div>
+		<div class="logo">
+			<a href="/"><img src="/images/title.png" /></a>
 		</div>
+		<nav>
+			<div class="item">
+				<div class="item_icon">
+					<% if(session.roll==='guest'){ %>
+					<a href="/login">
+					</a>
+					<% }else if(session.roll==='admin'){ %>
+					<select onchange="window.location.href=this.options[this.selectedIndex].value">
+						<option value="/edit_group_info">組別資訊</option>
+						<option value="/notice">通知</option>
+						<option value="/exhi_info">展覽資訊</option>
+						<option value="/statistic">統計分析</option>
+						<option value="/account_manage">帳號管理</option>
+						<option value="/uis/logout" selected>登出</option>
+					</select>
+					<% }else if(session.roll==='teacher'){ %>
+					<select onchange="window.location.href=this.options[this.selectedIndex].value">
+						<option value="/user_information">個人資訊</option>
+						<option value="/grade">指導組別</option>
+						<option value="/group_information">組別資訊</option>
+						<option value="/like">收藏</option>
+						<option value="/note">記事本</option>
+						<option value="/board">佈告欄</option>
+						<option value="/calendar">行事曆</option>
+						<option value="/uis/logout" selected>登出</option>
+					</select>
+					<% }else{ %>
+					<select onchange="window.location.href=this.options[this.selectedIndex].value">
+						<option value="/user_information">個人資訊</option>
+						<option value="/group_information">組別資訊</option>
+						<option value="/like">收藏</option>
+						<option value="/note">記事本</option>
+						<option value="/board">佈告欄</option>
+						<option value="/calendar">行事曆</option>
+						<option value="/uis/logout" selected>登出</option>
+					</select>
+					<% } %>
+				</div>
+				<% if(session.roll==='guest'){ %>
+				<p>訪客</p>
+				<% }else{ %>
+				<p><%=session.userId%></p>
+				<% } %>
+				%>
+			</div>
 		</nav>
 	</header>
 	<div class="content">
 		<div class="information">
 			<div class="left_part">
 				<div class="poster">
-					<img src=`<%= imgsrc %>` width="">
+					<img src='<%= imgsrc %>' width="">
 				</div>
 			</div>
 			<div class="right_part">
@@ -388,13 +181,14 @@
 			</div>
 		</div>
 		<div class="click_button">
+			<% if(session.roll !== 'guest') { %>
 			<div class="unlike">
-				<button id="unlike" type="button" onclick="clickunlike()">
+				<button id="unlike" class="<%= liked ? 'hide' : ''%>" type="button" onclick="togglelike()">
 					<img src="/images/unlike.png">
 				</button>
 			</div>
 			<div class="like">
-				<button id="like" type="button" onclick="clicklike()">
+				<button id="like" class="<%= !liked ? 'hide' : ''%>" type="button" onclick="togglelike()">
 					<img src="/images/like.png">
 				</button>
 			</div>
@@ -408,12 +202,18 @@
 					<img src="/images/unvote.png">
 				</button>
 			</div>
+			<% } %>
+			<% if(enable_ics) { %>
 			<div class="teacher_button">
-				<input type="button" onclick="javascript:location.href='/note'" value="記事本"></input>
-				<input type="button" onclick="javascript:location.href='/calendar'" value="行事曆"></input>
-				<input type="button" onclick="javascript:location.href='/board'" value="公告欄"></input>
+				<input type="button" onclick="javascript:location.href='<%= `/note/${year}/${nthGroup}` %>'"
+					value="記事本"></input>
+				<input type="button" onclick="javascript:location.href='<%= `/calendar/${year}/${nthGroup}` %>'"
+					value="行事曆"></input>
+				<input type="button" onclick="javascript:location.href='<%= `/board/${year}/${nthGroup}` %>'"
+					value="公告欄"></input>
 				<input type="button" onclick="javascript:location.href='/group_information'" value="組別資訊"></input>
 			</div>
+			<% } %>
 		</div>
 	</div>
 	<div class="message">
@@ -428,23 +228,20 @@
 		</ul>
 	</div>
 	<div class="data" style="display: none;">
-        <div class="year"><%= year %></div>
-        <div class="nthGroup"><%= nthGroup %></div>
-    </div>
+		<div class="year"><%= year %></div>
+		<div class="nthGroup"><%= nthGroup %></div>
+	</div>
 	<script src="/javascripts/open_information.js">
 	</script>
 	<script>
 		var year = document.querySelector(".year").textContent
-        var nthGroup = document.querySelector(".nthGroup").textContent
+		var nthGroup = document.querySelector(".nthGroup").textContent
+
 		function sendComment() {
 			var text = document.querySelector(".send_message textarea").value;
 			if (text == "") return;
 			else {
-				// let url = window.location.href;
-				// let params = new URLSearchParams(url.search);
-				// let year = params.get('year') // 'chrome-instant'
-				// let nthGroup = params.get('nthGroup') // 'mdn query string'
-				console.log(year,nthGroup,text)
+				console.log(year, nthGroup, text)
 				return fetch('/fs/comment/addComment', {
 						method: 'POST', // *GET, POST, PUT, DELETE, etc.
 						body: JSON.stringify({
@@ -466,6 +263,22 @@
 			}
 		}
 		document.querySelector(".send_message button").addEventListener('click', sendComment, false);
+
+		function togglelike() {
+			let like = document.getElementById("like");
+			let unlike = document.getElementById("unlike");
+			//alert("hello world");
+			let url = "/epis/proj/<%= year %>/<%= nthGroup %>/toggle_collect";
+			fetch(url, {
+					method: "GET",
+				})
+				.then((res) => res.json())
+				.catch((error) => console.error("Error:", error))
+				.then((res) => {
+					unlike.classList.toggle('hide');
+					like.classList.toggle('hide');
+				});
+		}
 	</script>
 </body>
 

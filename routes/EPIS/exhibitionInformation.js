@@ -68,7 +68,7 @@ function freezeExhibition(year = 0) {
   return new Promise((resolve, reject) => {
     setExhibition(year, { freezed: true })
       .then((d) => {
-        resolve(d);
+        resolve(true);
       })
       .catch((e) => {
         reject(e);

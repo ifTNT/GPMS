@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css" />
+    <style>
+      .user_photo{
+      	height:100px;
+      }
+      .user_photo img{
+      	height:100px;
+      	width:100px;
+      	background-color:green;
+      	border-radius: 50%;
+      	border: 2px solid black;
+      }
+      .head_photo{
+      	text-align: center;
+      	display:flex;
+      	width:50%;
+      	margin:20px auto;
+      	justify-content: center;
+      	align-items: flex-end;
+      }
+      .content {
+      	display:flex;
+      	margin:50px auto;
+      	justify-content:center;
+      }
+      .user_information {
+      	text-align:left;
+      	width:50%;
+      	margin:10px auto;
+
+      }
+      .change_photo img{
+      	height: 30px;
+      }
+      table {
+      	margin:10px auto;
+      	width: 80%;
+      	text-align:left;
+      }
+      td {
+      	width:20%;
+
+      	padding:10px;
+      }
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/"><img src="/images/title.png" /></a>
+      </div>
+      <nav>
+        <div class="item">
+          <div class="item_icon">
+            <% if(session.roll==='guest'){ %>
+            <a href="javascript:login()"> </a>
+            <% }else if(session.roll==='admin'){ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+            >
+              <option value="/edit_group_info">組別資訊</option>
+              <option value="/notice">通知</option>
+              <option value="/exhi_info">展覽資訊</option>
+              <option value="/statistic">統計分析</option>
+              <option value="/account_manage">帳號管理</option>
+              <option value="/uis/logout" selected>登出</option>
+            </select>
+            <% }else if(session.roll==='teacher'){ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+            >
+              <option value="/user_information">個人資訊</option>
+              <option value="/grade">指導組別</option>
+              <option value="/group_edit">組別資訊</option>
+              <option value="/like">收藏</option>
+              <option value="/note">記事本</option>
+              <option value="/board">佈告欄</option>
+              <option value="/calendar">行事曆</option>
+              <option value="/uis/logout" selected>登出</option>
+            </select>
+            <% }else{ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+            >
+              <option value="/user_information">個人資訊</option>
+              <option value="/group_edit">組別資訊</option>
+              <option value="/like">收藏</option>
+              <option value="/note">記事本</option>
+              <option value="/board">佈告欄</option>
+              <option value="/calendar">行事曆</option>
+              <option value="/uis/logout" selected>登出</option>
+            </select>
+            <% } %>
+          </div>
+          <% if(session.roll==='guest'){ %>
+          <p>訪客</p>
+          <% }else{ %>
+          <p><%=session.userId%></p>
+          <% } %> %>
+        </div>
+      </nav>
+    </header>
+    <div class="head_photo">
+      <div class="user_photo">
+        <img src="/images/user.png" />
+      </div>
+      <div class="change_photo" id="change_user_photo">
+        <img src="/images/camera.png" />
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="user_information">
+        <table>
+          <tr>
+            <td>
+              使用者名稱:
+            </td>
+            <td colspan="4" style="border-bottom: 3px black solid;">
+              <div class="user_name"><%= profile.name%></div>
+            </td>
+            <td>
+              <div class="change_photo" id="change_user_name">
+                <img src="/images/pencil.png" />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              使用者編號:
+            </td>
+            <td colspan="4" style="border-bottom: 3px black solid;">
+              <div class="user_account"><%= profile.userId %></div>
+            </td>
+            <td>
+              <div class="change_photo" id="change_user_account">
+                <img src="/images/pencil.png" />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              電子郵件:
+            </td>
+            <td colspan="4" style="border-bottom: 3px black solid;">
+              <div class="user_email"><%= profile.mail %></div>
+            </td>
+            <td>
+              <div class="change_photo" id="change_user_email">
+                <img src="/images/pencil.png" />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              實驗室:
+            </td>
+            <td colspan="4" style="border-bottom: 3px black solid;">
+              <div class="user_lab"><%= profile.lab %></div>
+            </td>
+            <td>
+              <div class="change_photo" id="change_user_lab">
+                <img src="/images/pencil.png" />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              連結網站:
+            </td>
+            <td colspan="4" style="border-bottom: 3px black solid;">
+              <div class="user_web"><%= profile.website %></div>
+            </td>
+            <td>
+              <div class="change_photo" id="change_user_web">
+                <img src="/images/pencil.png" />
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+		</div>
+		<script src="/javascripts/home.js"></script>
+  </body>
+</html>

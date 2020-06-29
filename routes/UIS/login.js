@@ -26,6 +26,7 @@ function login(req, userId, password) {
           req.session.logined = true;
           req.session.userId = data.userId;
           req.session.roll = data.roll;
+          req.session.groups = data.groups;
           req.session.save(() => {
             data.messasge = "Login successfully";
            resolve(data);

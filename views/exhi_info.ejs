@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/exhi_info.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/home.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/"><img src="/images/title.png" /></a>
+      </div>
+      <nav>
+        <div class="item">
+          <div class="item_icon">
+            <% if(session.roll==='guest'){ %>
+            <a href="/login"> </a>
+            <% }else if(session.roll==='admin'){ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+              onfocus="this.selectedIndex = -1;"
+            >
+              <option value="/edit_group_info">組別資訊</option>
+              <option value="/notice">通知</option>
+              <option value="/exhi_info">展覽資訊</option>
+              <option value="/statistic">統計分析</option>
+              <option value="/account_manage">帳號管理</option>
+              <option value="/uis/logout">登出</option>
+            </select>
+            <% }else if(session.roll==='teacher'){ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+              onfocus="this.selectedIndex = -1;"
+            >
+              <option value="/user_information">個人資訊</option>
+              <option value="/grade">指導組別</option>
+              <option value="/group_information">組別資訊</option>
+              <option value="/like">收藏</option>
+              <option value="/note">記事本</option>
+              <option value="/board">佈告欄</option>
+              <option value="/calendar">行事曆</option>
+              <option value="/uis/logout">登出</option>
+            </select>
+            <% }else{ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value"
+              onfocus="this.selectedIndex = -1;"
+            >
+              <option value="/user_information">個人資訊</option>
+              <option value="/group_information">組別資訊</option>
+              <option value="/like">收藏</option>
+              <% if(session.groups.length==1) { %> <% let {year,nthGroup} =
+              session.groups[0] %>
+              <option value="<%= `/note/${year}/${nthGroup}` %>">記事本</option>
+              <option value="<%= `/board/${year}/${nthGroup}` %>"
+                >佈告欄</option
+              >
+              <option value="<%= `/calendar/${year}/${nthGroup}` %>"
+                >行事曆</option
+              >
+              <% } %>
+              <option value="/uis/logout">登出</option>
+            </select>
+            <% } %>
+          </div>
+          <% if(session.roll==='guest'){ %>
+          <p>訪客</p>
+          <% }else{ %>
+          <p><%=session.userId%></p>
+          <% } %> %>
+        </div>
+      </nav>
+    </header>
+    <div class="menu">
+        <% exhibitions.forEach(exhi=>{ %>
+            <a href=<%= `/exhi_info/?year=${exhi.year}` %> class="<%= (exhi.year===session.year)? 'focuse' : '' %>"><%= exhi.year %>學年度</a>
+        <% }); %>
+    </div>
+    <div class="info_block">
+        <h2>
+            資工系<%= session.year%>學年度畢業專題展覽資訊
+            <% if(currentExhibition.freezed){ %>
+                <span style="color: darkred">（已凍結）</span>
+            <% } %>
+        </h2>
+        地點：<span><%= currentExhibition.location %></span><br/>
+        時間：<span><%= dateFormat(currentExhibition.date, "yyyy-mm-dd")%></span>&nbsp;&nbsp;&nbsp;&nbsp;9:00~17:00<br/>
+    </div>
+    <div class="button">
+      <% if(!currentExhibition.freezed){ %>
+        <button type="button"><a href="/exhibition_edit">更改資料</a></button>
+        <button type="button" onclick="freeze()">凍結資料</button>
+      <% } %>
+    </div>
+    <script>
+        function freeze(){
+            let url='/epis/exhib/<%= session.year %>/freeze';
+            fetch(url, {
+              method: "GET", // or 'PUT'
+            })
+              .then((res) => res.json())
+              .catch((error) => console.error("Error:", error))
+              .then((res) => {
+                  if(res.ok===true){
+                    alert("凍結成功");
+                    location.reload();
+                  }else{
+                    alert("凍結失敗");
+                  }
+              });
+        }
+    </script>
+  <script src="/javascripts/home.js"></script>
+  </body>
+</html>
