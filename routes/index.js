@@ -95,6 +95,7 @@ router.get("/board/:year/:nthGroup", function (req, res, next) {
       res.render("board", {
         stickers: data,
         nthGroup: req.params.nthGroup,
+        session: req.session,
         // stickerId: Number, // 公告的ID, integer
         // date: Date, // 公告的日期, date
         // name: String, // 公告的發布者, string
@@ -159,6 +160,7 @@ router.get("/edit_board/:nthGroup/:stickerId", function (req, res, next) {
     year: req.session.year,
     stickerId: req.params.stickerId,
     nthGroup: req.params.nthGroup,
+    session: req.session,
   });
 });
 
@@ -166,6 +168,7 @@ router.get("/calendar/:year/:nthGroup", function (req, res, next) {
   res.render("calendar", {
     year: req.params.year,
     nthGroup: req.params.nthGroup,
+    session: req.session,
   });
 });
 
@@ -177,6 +180,7 @@ router.get("/note/:year/:nthGroup", function (req, res, next) {
         noteText: data,
         year: req.params.year,
         nthGroup: req.params.nthGroup,
+        session: req.session,
       });
     })
     .catch((err) => {
@@ -200,6 +204,7 @@ router.get("/statistics/:year", function (req, res, next) {
         console.log(data);
         res.render("statistic", {
           results: data,
+          session: req.session,
         });
       })
       .catch((err) => {

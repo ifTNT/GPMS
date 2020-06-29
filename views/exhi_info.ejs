@@ -15,14 +15,13 @@
       <nav>
         <div class="item">
           <div class="item_icon">
-            <% if(session.roll==='guest'){ %>
-            <a href="/login"> </a>
+              <% if(session.roll==='guest'){ %>
+            <a href="/login">
+            </a>
             <% }else if(session.roll==='admin'){ %>
             <select
-              onchange="window.location.href=this.options[this.selectedIndex].value"
-              onfocus="this.selectedIndex = -1;"
+              onchange="window.location.href=this.options[this.selectedIndex].value" onfocus="this.selectedIndex = -1;"
             >
-              <option value="/edit_group_info">組別資訊</option>
               <option value="/notice">通知</option>
               <option value="/exhi_info">展覽資訊</option>
               <option value="/statistic">統計分析</option>
@@ -31,45 +30,40 @@
             </select>
             <% }else if(session.roll==='teacher'){ %>
             <select
-              onchange="window.location.href=this.options[this.selectedIndex].value"
-              onfocus="this.selectedIndex = -1;"
+              onchange="window.location.href=this.options[this.selectedIndex].value" onfocus="this.selectedIndex = -1;"
             >
-              <option value="/user_information">個人資訊</option>
-              <option value="/grade">指導組別</option>
-              <option value="/group_information">組別資訊</option>
-              <option value="/like">收藏</option>
-              <option value="/note">記事本</option>
-              <option value="/board">佈告欄</option>
-              <option value="/calendar">行事曆</option>
-              <option value="/uis/logout">登出</option>
-            </select>
+                            <option value="/user_information">個人資訊</option>
+                            <option value="/grade">指導組別</option>
+                            <option value="/group_information">組別資訊</option>
+                            <option value="/like">收藏</option>
+                            <option value="<%= `/note/${year}/${nthGroup}` %>">記事本</option>
+                            <option value="<%= `/board/${year}/${nthGroup}` %>">佈告欄</option>
+                            <option value="<%= `/calendar/${year}/${nthGroup}` %>">行事曆</option>
+                            <option value="/uis/logout">登出</option>
+                        </select>
             <% }else{ %>
             <select
-              onchange="window.location.href=this.options[this.selectedIndex].value"
-              onfocus="this.selectedIndex = -1;"
+              onchange="window.location.href=this.options[this.selectedIndex].value" onfocus="this.selectedIndex = -1;"
             >
-              <option value="/user_information">個人資訊</option>
-              <option value="/group_information">組別資訊</option>
-              <option value="/like">收藏</option>
-              <% if(session.groups.length==1) { %> <% let {year,nthGroup} =
-              session.groups[0] %>
-              <option value="<%= `/note/${year}/${nthGroup}` %>">記事本</option>
-              <option value="<%= `/board/${year}/${nthGroup}` %>"
-                >佈告欄</option
-              >
-              <option value="<%= `/calendar/${year}/${nthGroup}` %>"
-                >行事曆</option
-              >
-              <% } %>
-              <option value="/uis/logout">登出</option>
-            </select>
+                            <option value="/user_information">個人資訊</option>
+                            <option value="/group_information">組別資訊</option>
+                            <option value="/like">收藏</option>
+                            <% if(session.groups.length==1) { %>
+                            <% let {year,nthGroup} = session.groups[0] %>
+                            <option value="<%= `/note/${year}/${nthGroup}` %>">記事本</option>
+                            <option value="<%= `/board/${year}/${nthGroup}` %>">佈告欄</option>
+                            <option value="<%= `/calendar/${year}/${nthGroup}` %>">行事曆</option>
+                            <% } %>
+                            <option value="/uis/logout">登出</option>
+                        </select>
             <% } %>
           </div>
-          <% if(session.roll==='guest'){ %>
-          <p>訪客</p>
-          <% }else{ %>
-          <p><%=session.userId%></p>
-          <% } %> %>
+            <% if(session.roll==='guest'){ %>
+                <p>訪客</p>
+            <% }else{ %>
+                <p><%=session.userId%></p>
+            <% } %>
+            %>
         </div>
       </nav>
     </header>

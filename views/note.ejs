@@ -5,57 +5,69 @@
     <meta charset='utf-8' />
     <link rel=stylesheet type="text/css" href="/stylesheets/reset.css">
     <link rel=stylesheet type="text/css" href="/stylesheets/note.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css" />
     
 </head>
 
 <body>
     <header>
-        <div class="logo"> <a href="home.html"><img src="/images/title.png"></a> </div>
-        <nav>
-            <div class="bell" style="position: relative;">
-                <img src="/images/bell.png">
-                <p class="notifyCounter" style="position: absolute;bottom: 2px;right: 2px;color: red;"></p>
-                <ul class="notify" style="position: absolute;bottom: -10px;left: -40px;text-align: center;width: 120px;display: none;">
-
-                </ul>
-            </div>
-            <div class="item">
-                <div class="item_icon">
-
-                    <a href="javascript:login()">
-                        <img src="/images/login.png">
-                    </a>
-                    <select onchange="window.open(this.options[this.selectedIndex].value)">
-                        <option value="edit_group_info.html">組別資訊</option>
-                        <option value="notice.html">通知</option>
-                        <option value="exhi_info.html">展覽資訊</option>
-                        <option value="statistic.html">統計分析</option>
-                        <option value="account_manage.html">帳號管理</option>
-                        <option value="home.html">登出</option>
-                    </select>
-
-                    <!--老師<select>
-                                <option value="user_information.html">個人資訊</option>
-                                <option value="grade.html">指導組別</option>
-                                <option value="group_edit.html">組別資訊</option>
-                                <option value="like.html">收藏</option>
-                                <option value="note.html">記事本</option>
-                                <option value="board.html">佈告欄</option>
-                                <option value="calendar.html">行事曆</option>
-                                <option>登出</option>
-                            </select>-->
-                    <!--組長組員<select>
-                                <option value="user_information.html">個人資訊</option>
-                                <option value="group_edit.html">組別資訊</option>
-                                <option value="like.html">收藏</option>
-                                <option value="note.html">記事本</option>
-                                <option value="board.html">佈告欄</option>
-                                <option value="calendar.html">行事曆</option>
-                                <option>登出</option>
-                            </select>-->
-                </div>
-            </div>
-        </nav>
+      <div class="logo">
+        <a href="/"><img src="/images/title.png" /></a>
+      </div>
+      <nav>
+        <div class="item">
+          <div class="item_icon">
+              <% if(session.roll==='guest'){ %>
+            <a href="/login">
+            </a>
+            <% }else if(session.roll==='admin'){ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value" onfocus="this.selectedIndex = -1;"
+            >
+              <option value="/notice">通知</option>
+              <option value="/exhi_info">展覽資訊</option>
+              <option value="/statistic">統計分析</option>
+              <option value="/account_manage">帳號管理</option>
+              <option value="/uis/logout">登出</option>
+            </select>
+            <% }else if(session.roll==='teacher'){ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value" onfocus="this.selectedIndex = -1;"
+            >
+                            <option value="/user_information">個人資訊</option>
+                            <option value="/grade">指導組別</option>
+                            <option value="/group_information">組別資訊</option>
+                            <option value="/like">收藏</option>
+                            <option value="<%= `/note/${year}/${nthGroup}` %>">記事本</option>
+                            <option value="<%= `/board/${year}/${nthGroup}` %>">佈告欄</option>
+                            <option value="<%= `/calendar/${year}/${nthGroup}` %>">行事曆</option>
+                            <option value="/uis/logout">登出</option>
+                        </select>
+            <% }else{ %>
+            <select
+              onchange="window.location.href=this.options[this.selectedIndex].value" onfocus="this.selectedIndex = -1;"
+            >
+                            <option value="/user_information">個人資訊</option>
+                            <option value="/group_information">組別資訊</option>
+                            <option value="/like">收藏</option>
+                            <% if(session.groups.length==1) { %>
+                            <% let {year,nthGroup} = session.groups[0] %>
+                            <option value="<%= `/note/${year}/${nthGroup}` %>">記事本</option>
+                            <option value="<%= `/board/${year}/${nthGroup}` %>">佈告欄</option>
+                            <option value="<%= `/calendar/${year}/${nthGroup}` %>">行事曆</option>
+                            <% } %>
+                            <option value="/uis/logout">登出</option>
+                        </select>
+            <% } %>
+          </div>
+            <% if(session.roll==='guest'){ %>
+                <p>訪客</p>
+            <% }else{ %>
+                <p><%=session.userId%></p>
+            <% } %>
+            %>
+        </div>
+      </nav>
     </header>
 
     <div class="list">
