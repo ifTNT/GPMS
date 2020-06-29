@@ -116,28 +116,29 @@
         </button>
     </div>
     <div class="data" style="display: none;">
-        <div class="userId"><%= userId %>2252626</div>
+        <div class="userId"><%= userId %></div>
         <div class="year"><%= year %></div>
         <div class="nthGroup"><%= nthGroup %></div>
         <div class="stickerId"><%= stickerId %></div>
     </div>
     <script>
         var userId = document.querySelector(".userId").textContent
-        var content = document.getElementsByName("announcement").value
         var year = document.querySelector(".year").textContent
         var nthGroup = document.querySelector(".nthGroup").textContent
         var stickerId = document.querySelector(".stickerId").textContent
         
         function send() {
             var url = '/ics/board/updateSticker';
+            var content = document.querySelector(".editBoardPage textarea").value;
             var data = {
-            // "year": year,
-            "year": 20,
+            "year": year,
+            // "year": 20,
             "nthGroup": nthGroup,
             "stickerId": stickerId,
             "userId": userId,
             "content": content
         }
+        console.log(content)
             fetch(url, {
                     method: 'POST', // or 'PUT'
                     body: JSON.stringify(data), // data can be `string` or {object}!
