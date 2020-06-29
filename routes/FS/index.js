@@ -1,5 +1,6 @@
 var express = require("express");
 const grade = require("./grade");
+const comment = require("./comment")
 var router = express.Router();
 
 // ===================== Grade ========================
@@ -85,7 +86,9 @@ router.get('/comment/getComments', function (req, res, next) {
 });
 
 router.post('/comment/addComment', function (req, res, next) {
-  var uid = req.session.userId == "" ? "訪客" : req.session.userId;
+  // var uid = req.session.userId == "" ? "訪客" : req.session.userId;
+  var uid = "admin"
+  console.log(req.body)
   comment
     .addComment(req.body.year, req.body.nthGroup, req.body.content, uid)
     .then((data) => {

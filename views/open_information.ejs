@@ -421,25 +421,31 @@
 			<textarea rows="1" name="message_content" cols="50"></textarea>
 			<button type="button">送出</button>
 		</div>
-		<ul>
+		<ul style="margin: 0 auto;">
 			<% for(var i=0; i<chat.length; i++) { %>
 			<li><%= chat[i].name %>: <%= chat[i].content %></li>
 			<% } %>
 		</ul>
 	</div>
+	<div class="data" style="display: none;">
+        <div class="year"><%= year %></div>
+        <div class="nthGroup"><%= nthGroup %></div>
+    </div>
 	<script src="/javascripts/open_information.js">
 	</script>
 	<script>
-		var text = document.querySelector(".send_message textarea").value;
-
+		var year = document.querySelector(".year").textContent
+        var nthGroup = document.querySelector(".nthGroup").textContent
 		function sendComment() {
+			var text = document.querySelector(".send_message textarea").value;
 			if (text == "") return;
 			else {
-				let url = window.location.href;
-				let params = new URLSearchParams(url.search);
-				let year = params.get('year') // 'chrome-instant'
-				let nthGroup = params.get('nthGroup') // 'mdn query string'
-				return fetch('/fs/note/updateNote', {
+				// let url = window.location.href;
+				// let params = new URLSearchParams(url.search);
+				// let year = params.get('year') // 'chrome-instant'
+				// let nthGroup = params.get('nthGroup') // 'mdn query string'
+				console.log(year,nthGroup,text)
+				return fetch('/fs/comment/addComment', {
 						method: 'POST', // *GET, POST, PUT, DELETE, etc.
 						body: JSON.stringify({
 							"year": year,

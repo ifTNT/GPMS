@@ -60,8 +60,9 @@ router.get("/project/:year/:nthGroup", function (req, res, next) {
           members: data.members,
           description: data.description,
           chat: data.comment,
+          year: req.params.year,
+          nthGroup: req.params.nthGroup
         });
-        res.json(data);
       })
       .catch((err) => next(err));
   }
