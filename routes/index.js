@@ -121,7 +121,10 @@ router.get("/user_information", async function (req, res, next) {
     if (profile === null) {
       res.send("User not fount");
     } else {
-      res.render("user_information", { session: req.session, profile });
+      res.render("user_information", {
+        session: req.session,
+        profile
+      });
     }
   }
 });
@@ -136,7 +139,10 @@ router.get("/group_edit", async function (req, res, next) {
       primaryProject.year,
       primaryProject.nthGroup
     );
-    res.render("group_edit", { session: req.session, project });
+    res.render("group_edit", {
+      session: req.session,
+      project
+    });
   }
 });
 
@@ -150,18 +156,25 @@ router.get("/group_information", async function (req, res, next) {
       primaryProject.year,
       primaryProject.nthGroup
     );
-    res.render("group_information", { session: req.session, project });
+    res.render("group_information", {
+      session: req.session,
+      project
+    });
   }
 });
 
 router.get("/edit_board/:nthGroup/:stickerId", function (req, res, next) {
-  res.render("edit_board", {
-    userId: req.session.userId,
-    year: req.session.year,
-    stickerId: req.params.stickerId,
-    nthGroup: req.params.nthGroup,
-    session: req.session,
-  });
+  if (req.session.logined === true) {
+    res.render("edit_board", {
+      userId: req.session.userId,
+      year: req.session.year,
+      stickerId: req.params.stickerId,
+      nthGroup: req.params.nthGroup,
+      session: req.session,
+    });
+  } else {
+    res.redirect('/');
+  }
 });
 
 router.get("/calendar/:year/:nthGroup", function (req, res, next) {
@@ -192,14 +205,14 @@ router.get("/notice", function (req, res, next) {
   res.render("notice");
 });
 
-router.get("/statistics/:year", function (req, res, next) {
-  if (req.params.year === undefined) {
+router.get("/statistic", function (req, res, next) {
+  if (req.session.year === undefined) {
     next({
       message: "Invalid argument",
     });
   } else {
     statisticsAnalysis
-      .getStatistics(req.params.year)
+      .getStatistics(req.session.year)
       .then((data) => {
         console.log(data);
         res.render("statistic", {
@@ -217,7 +230,10 @@ router.get("/like", async function (req, res, next) {
   if (req.session.logined === true) {
     let userInfo = await userInformation.getProfile(req.session.userId);
     let collection = userInfo.collections;
-    res.render("like", { session: req.session, collection });
+    res.render("like", {
+      session: req.session,
+      collection
+    });
   } else {
     res.redirect("/");
   }

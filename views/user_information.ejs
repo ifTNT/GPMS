@@ -65,10 +65,8 @@
             <select
               onchange="window.location.href=this.options[this.selectedIndex].value" onfocus="this.selectedIndex = -1;"
             >
-              <option value="/notice">通知</option>
               <option value="/exhi_info">展覽資訊</option>
               <option value="/statistic">統計分析</option>
-              <option value="/account_manage">帳號管理</option>
               <option value="/uis/logout">登出</option>
             </select>
             <% }else if(session.roll==='teacher'){ %>

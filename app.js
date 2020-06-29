@@ -32,7 +32,7 @@ app.use(
   session({
     secret: "afwfdpfkpaokwefn-9gj0irntjolwaefmiowekeafek",
     store: new MongoStore({ url: "mongodb://localhost/GPMS_db" }),
-    cookie: { maxAge: 5 * 60 * 1000 },
+    cookie: { maxAge: 60 * 60 * 1000 },
     resave: false,
     saveUninitialized: true,
   })

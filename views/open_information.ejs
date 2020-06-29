@@ -32,7 +32,8 @@
 		.right_part {
 			display: flex;
 			height: 600px;
-			padding: 50px;
+			/* padding: 50px; */
+			margin: 20px 35px;
 			flex-direction: column;
 			justify-content: space-between;
 		}
@@ -114,10 +115,8 @@
             <select
               onchange="window.location.href=this.options[this.selectedIndex].value" onfocus="this.selectedIndex = -1;"
             >
-              <option value="/notice">通知</option>
               <option value="/exhi_info">展覽資訊</option>
               <option value="/statistic">統計分析</option>
-              <option value="/account_manage">帳號管理</option>
               <option value="/uis/logout">登出</option>
             </select>
             <% }else if(session.roll==='teacher'){ %>
@@ -169,22 +168,26 @@
 			<div class="right_part">
 				<div class="group_information">
 					<div class="group_name">
-						<font><%= title %></font>
+						<font style="font-size: 20px;"><%= title %></font>
 					</div>
+				</br>
 					<div class="group_teacher">
-						<font>指導老師:<%= teacherName %></font>
+						<font>指導老師:  <%= teacherName %></font>
 					</div>
+					
+				</br>
 					<div class="group_leader">
-						<font>組長:<%= leaderName %></font>
+						<font>組長:  <%= leaderName %></font>
 					</div>
 					<% for(var i=0; i<members.length; i++) { %>
 					<div class="group_member">
-						<font>成員:<%= members[i] %></font>
+						<font>成員:  <%= members[i] %></font>
 					</div>
 					<% } %>
 				</div>
 				<div class="introduct">
-					<font>簡介:<%= description %></font>
+					<p style="font-size: 20px;">簡介:</br></br></p>
+					<font><%= description %></font>
 				</div>
 			</div>
 		</div>
